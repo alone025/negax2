@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bgcolorr{
+   background: linear-gradient(99.36deg, #6A59A7 32.12%, #EDABC6 73.62%);
+}
+
+.colorr{
+    color: linear-gradient(99.36deg, #6A59A7 32.12%, #EDABC6 73.62%);
+ }
