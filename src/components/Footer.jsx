@@ -3,6 +3,7 @@ import { BiLike } from 'react-icons/bi'
 import { BsFillFolderFill } from 'react-icons/bs'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { IoHomeOutline } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -15,10 +16,14 @@ const Footer = () => {
         <BsFillFolderFill />
         </div>
         <div className='w-8 h-8 '>
+          <Link to="/likesh">
         <BiLike className="text-3xl"/>
+          </Link>
         </div>
         <div className='w-8 h-8 text-3xl'>
+          <Link to="/shopping">
         <FaRegUserCircle />
+          </Link>
         </div>
        </div>
     </div>
