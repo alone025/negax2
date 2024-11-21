@@ -3,9 +3,17 @@ import logo from "../img/logo.png"
 import React from 'react'
 import { MdOutlineEmail, MdPhoneIphone } from "react-icons/md"
 import { FaTelegram } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function Register() {
+
+const navigate = useNavigate();
+
+function handleClikRegisterState(e){
+  e.preventDefault();
+  navigate("/registerstate")
+}
+
   return (
     <div className='mt-3 relative flex flex-col items-center justify-between container bg-white font-sans text-gray-800'>
         <header className="absolute container top-0 flex justify-between items-center w-full">
@@ -29,7 +37,7 @@ function Register() {
               </div>
               <div className="w-full gap-3 flex flex-col text-white">
               <h1 className="text-center text-gray-600 text-[34px] leading-[42px] font-semibold mb-6">Регистрация</h1>
-                <button className="w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 bg-[#634F9E]">
+                <button onClick={handleClikRegisterState} className="w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 bg-[#634F9E]">
                 <MdPhoneIphone className="text-2xl" /><p>по номеру телефона</p>
                 </button>
                 <button className="w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E] hover:bg-[#634F9E] hover:text-white duration-300">

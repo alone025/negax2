@@ -1,7 +1,7 @@
 import { TbWorld } from "react-icons/tb";
-import VipPackagePage from "../components/VipPackagePage/VipPackagePage";
 import VipPage from "../components/VipPage";
 import logo from "../img/logo.png"
+import Footer from "../components/Footer";
 
 function Shopping() {
   return (
@@ -11,9 +11,10 @@ function Shopping() {
                 <img className="w-[40px]  " src={logo} alt="" />
                 <h1 className="font-normal colorr text-[12px] leading-4 ">NIKAH.SPACE</h1>
             </div>
-        </header>
+      </header>
+      
       <VipPage />
-      <VipPackagePage />
+      <Footer/>
     </div>
   );
 }

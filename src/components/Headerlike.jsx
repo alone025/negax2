@@ -14,7 +14,7 @@ function Headerlike() {
           <input
             type="text"
             placeholder="Поиск"
-            className="w-full border-[#ACACAC] border pl-10 py-2 bg-transparent outline-none "
+            className="w-full border-[#ACACAC] border pl-10 py-2 bg-transparent outline-none text-black"
           />
         </div>
       </div>
