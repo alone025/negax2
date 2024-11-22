@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../img/logo.png"
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 const PersonalForm = () => {
 
   const navigate = useNavigate();
