@@ -64,8 +64,9 @@ const Slider = () => {
             key={slide.id}
             className="flex-none w-[80%] shrink-0 relative"
             style={{
-              marginRight: slide.id !== 2 ? '10%' : '0%',
-              marginLeft: currentSlide + 1 === 2 ? slide.id === 1 && '10%' : 0
+              // marginRight: slide.id !== 2 ? '10%' : '0%',
+              // marginLeft: currentSlide + 1 === 2 ? slide.id === 1 && '10%' : 0
+              marginRight:'10%'
             }}
           >
             <div className="rounded-xl w-full shadow-md">

@@ -25,7 +25,7 @@ function handleKontakForm(e){
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] md:text-2xl leading-4 ">NIKAH.SPACE</h1>
           </div>
     </header>
-      <div className="bg-white rounded-lg p-6 w-full">
+      <div className="bg-white rounded-lg pt-3 sm:p-6 w-full">
       <div className="flex flex-col justify-between gap-3 items-center mb-6">
           <div className="flex items-center justify-between w-full ">
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">

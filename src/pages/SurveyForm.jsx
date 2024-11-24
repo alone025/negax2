@@ -31,7 +31,7 @@ const SurveyForm = () => {
           </h1>
         </div>
       </header>
-      <div className="bg-white p-6 w-full">
+      <div className="bg-white pt-3 sm:p-6 w-full">
         <div className="flex flex-col justify-between gap-3 items-center mb-6">
           <div className="flex items-center justify-between w-full ">
             <span className="text-sm font-normal font-mulish text-[#634F9E]">

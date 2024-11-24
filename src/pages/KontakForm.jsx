@@ -20,14 +20,14 @@ const KontakForm = () => {
 
 
     return (
-    <div className="flex flex-col items-center pt-16 px-4 min-h-screen   relative">
+    <div className="flex flex-col items-center pt-16 px-4 min-h-screen relative">
     <header className="absolute container top-5 flex justify-between items-center w-full">
           <div className="flex items-center gap-3">
               <img className="w-[40px]" src={logo} alt="" />
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] leading-4 md:text-2xl">NIKAH.SPACE</h1>
           </div>
     </header>
-      <div className="bg-white rounded-lg p-6 w-full">
+      <div className="bg-white rounded-lg pt-3 sm:p-6 w-full">
       <div className="flex flex-col justify-between gap-3 items-center mb-6">
           <div className="flex items-center justify-between w-full ">
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
@@ -63,7 +63,7 @@ const KontakForm = () => {
         <h2 className="text-center text-xl font-mulish font-semibold mb-6">Контакты</h2>
 
         {/* Расскажите о себе Section */}
-        <div className="mb-6 border border-[#634F9E] p-5 rounded-2xl">
+        <div className="mb-6 border border-[#634F9E] p-3 sm:p-5 rounded-2xl">
           <h3 className="block font-mulish font-normal text-base text-[#242430] mb-2">Контакты</h3>
           <div className="space-y-3">
             <input

@@ -35,7 +35,7 @@ const RegisterVerification = () => {
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] md:text-2xl leading-4 ">NIKAH.SPACE</h1>
           </div>
     </header>
-     <div className="bg-white rounded-lg p-6 w-full">
+     <div className="bg-white rounded-lg pt-3 sm:p-6 w-full">
      <button onClick={()=> window.open("/registerstate", "_current")} className="text-gray-600 mb-5 flex items-center">
             <span className="mr-2 text-[#ACACAC]"><HiChevronLeft/></span>
           </button>
