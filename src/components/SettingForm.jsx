@@ -48,7 +48,7 @@ const SettingForm = () => {
            {
             links.map((c, mc)=> (
                 <>
-                 <div onClick={()=> window.open(c.link,'_current')} key={mc} className="link flex flex-row justify-between items-center">
+                 <div onClick={()=> window.open(c.link,'_current')} key={mc} className="link cursor-pointer flex flex-row justify-between items-center">
               <p className="font-mulish font-black text-[#5E5E5E] text-sm xl:text-base">
                 {c.p}
               </p>
