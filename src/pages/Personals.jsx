@@ -1,122 +1,164 @@
+import { useState } from "react";
+import seting from "../img/filter.svg";
+import question from "../img/question.svg";
+import logo from "../img/logo2.png";
+import { useNavigate } from "react-router-dom";
+import FilterForm from "../components/FilterForm";
+
 const Personals = () => {
-    const profiles = [
-      {
-        name: "Катя",
-        age: 20,
-        location: "Казахстан, Астана",
-        id: 8836,
-        avatar: "/female-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      {
-        name: "Ахмад",
-        age: 25,
-        location: "Казахстан, Алматы",
-        id: 8742,
-        avatar: "/male-avatar.png", // Avatar rasmi
-      },
-      // Ko'proq foydalanuvchi qo'shishingiz mumkin
-    ];
-  
-    return (
-      <div className="bg-gray-50 min-h-screen p-6">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center">
-            <img
-              src="/logo.png"
-              alt="Nikah.Space Logo"
-              className="h-8 mr-2"
-            />
-            <span className="text-purple-600 font-bold text-lg">Nikah.Space</span>
-          </div>
-          <div className="flex space-x-4">
-            <button>
-              <i className="fas fa-sliders-h text-purple-600 text-xl"></i>
-            </button>
-            <button>
-              <i className="fas fa-question-circle text-purple-600 text-xl"></i>
-            </button>
-          </div>
-        </div>
-  
-        {/* Title */}
-        <h1 className="text-xl font-bold text-purple-600 mb-4">Анкеты</h1>
-  
-        {/* Profiles Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {profiles.map((profile, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-b from-purple-500 to-pink-500 text-white p-4 rounded-xl shadow-lg"
-            >
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="w-20 h-20 mx-auto mb-4 rounded-full border-4 border-white"
-              />
-              <h2 className="text-lg font-bold text-center">{profile.name}, {profile.age} лет</h2>
-              <p className="text-center text-sm">{profile.location}</p>
-              <p className="text-center text-xs mt-2">№{profile.id}</p>
-              <button className="mt-4 w-full bg-white text-purple-600 font-bold py-2 rounded-lg hover:bg-gray-100 transition">
-                Подробнее
-              </button>
-            </div>
-          ))}
-        </div>
-  
-        {/* Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 w-full bg-white shadow-md flex justify-around py-2">
-          <button className="text-purple-600">
-            <i className="fas fa-home text-xl"></i>
-          </button>
-          <button className="text-purple-600">
-            <i className="fas fa-users text-xl"></i>
-          </button>
-          <button className="text-purple-600">
-            <i className="fas fa-thumbs-up text-xl"></i>
-          </button>
-          <button className="text-purple-600">
-            <i className="fas fa-user text-xl"></i>
-          </button>
-        </div>
-      </div>
-    );
+
+  const navigate = useNavigate();
+
+  const profiles = [
+    {
+      name: "Катя",
+      age: 20,
+      location: "Казахстан, Астана",
+      id: 8836,
+      avatar: "src/img/female-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png",
+    },
+    {
+      name: "Ахмад",
+      age: 25,
+      location: "Казахстан, Алматы",
+      id: 8742,
+      avatar: "src/img/male-avatar.png", 
+    },
+    
+  ];
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleSeting = () => {
+    setIsMenuOpen((prev) => !prev);
   };
-  
-  export default Personals;
-  
+
+  function handleQuestion() {
+    navigate("/question");
+  }
+
+
+
+  return (
+    <div className="bg-gray-50 min-h-screen p-6 flex flex-col items-center">
+      {/* Header */}
+      <header className="absolute container top-5 flex justify-between items-center w-full">
+        <div onClick={handleSeting} className="cursor-pointer">
+          <img src={seting} alt="Settings" />
+        </div>
+        <div className="flex items-center gap-3">
+          <img className="w-[40px]" src={logo} alt="Logo" />
+          <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] md:text-2xl leading-4 ">
+            NIKAH.SPACE
+          </h1>
+        </div>
+        <div
+          className="cursor-pointer"
+          onClick={handleQuestion}
+        >
+          <img src={question} alt="Question" />
+        </div>
+      </header>
+
+        {/* Side Menu */}
+        <div
+        className={`fixed top-0 left-0 h-full w-[270px] bg-white shadow-lg transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out z-50`}
+      >
+        <FilterForm hnd={handleSeting} />
+      </div>
+
+      {/* Overlay */}
+      {isMenuOpen && (
+        <div
+          onClick={handleSeting}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
+
+      {/* Title */}
+      <h1 className="text-xl lg:text-2xl font-mulish font-bold text-center rgb-text mb-4 mt-12">Анкеты</h1>
+
+      {/* Profiles Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {profiles.map((profile, index) => (
+          <div
+            key={index}
+            className="bg-rgb flex flex-col justify-between text-white p-4 rounded-xl shadow-lg"
+          >
+           
+           <div>
+           <h2 className="text-sm sm:text-base font-mulish font-semibold text-start">
+              {profile.name}, {profile.age} лет
+            </h2>
+            <p className="text-start font-mulish font-semibold text-sm sm:text-base">{profile.location}</p>
+            <p className="text-start font-mulish font-bold text-sm sm:text-base">№{profile.id}</p>
+           </div>
+            <img
+              src={profile.avatar}
+              alt={profile.name}
+              className="mx-auto h-[100px] sm:h-[130px] md:h-[200px] lg:h-[200px] xl:h-auto my-3"
+            />
+            <button onClick={()=> window.open("/personals/test", "_current")} className="mt-4 outline-none w-full text-[8px] sm:text-xs md:text-sm lg:text-base bg-[#8E76D7] text-white font-mulish font-bold py-2 rounded transition">
+              Подробнее
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 w-full bg-white shadow-md flex justify-around py-2">
+        <button className="text-purple-600">
+          <i className="fas fa-home text-xl"></i>
+        </button>
+        <button className="text-purple-600">
+          <i className="fas fa-users text-xl"></i>
+        </button>
+        <button className="text-purple-600">
+          <i className="fas fa-thumbs-up text-xl"></i>
+        </button>
+        <button className="text-purple-600">
+          <i className="fas fa-user text-xl"></i>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Personals;

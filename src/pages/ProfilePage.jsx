@@ -1,8 +1,12 @@
 import Gallery from "../components/Galery";
-import logo from "../img/logo.png"
-import setting from "../img/setting.png"
+import prevIcon from "../img/prev.svg"
+import dots from "../img/3dot.svg"
 
-const Profiless = () => {
+import vector from "../img/vector.svg";
+import xxx from "../img/xIcon.svg";
+import group1 from "../img/share.svg";
+
+const ProfilePage = () => {
 
   const user = {
       name: "Алексей",
@@ -37,8 +41,8 @@ const Profiless = () => {
     };
   
     return (
-      <div className="flex flex-col container pt-16 px-4 min-h-screen relative">
-    <header className="absolute container top-5 flex justify-between items-center w-full">
+      <div className="flex flex-col min-h-screen relative">
+    {/* <header className="absolute container top-5 flex justify-between items-center w-full">
           <div className="flex items-center gap-3">
               <img className="w-[40px]  " src={logo} alt="" />
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal rgb-text cursor-pointer font-pro-monument text-[13px] md:text-2xl leading-4 ">NIKAH.SPACE</h1>
@@ -46,10 +50,32 @@ const Profiless = () => {
           <div className="cursor-pointer" >
             <img src={setting} alt="" />
           </div>
+    </header> */}
+
+    <header>
+        <div className="bg-div flex flex-col items-center relative min-h-[355px] w-full bg-[#ACACAC]">
+            <div className="tope pt-10 flex flex-row items-start justify-between container">
+                <img onClick={()=> window.open("/personals", "_current")} src={prevIcon} alt="" />
+                <img src={dots} alt="" />
+            </div>
+
+            <section className="container absolute -bottom-3 flex justify-between items-center">
+        <div className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+          <img src={group1} alt="" />
+        </div>
+        <div className=" relative bg-white cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
+          <img src={xxx} alt="" />
+        </div>
+        <div className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+          <img src={vector} alt="" />
+        </div>
+      </section>
+        </div>
     </header>
   
         
-        <div className="mt-6">
+        <div className="container">
+        <div className="mt-12">
           <h1 className="text-2xl font-mulish font-medium text-[#131313]">
             {user.name}, {user.age}
           </h1>
@@ -100,18 +126,9 @@ const Profiless = () => {
           <Gallery/>
         </div>
   
-        <div className="mt-10 space-y-2">
-          <button className="w-full bg-white text-[#6A59A7] shadow py-3 rounded-lg font-poppins font-semibold hover:bg-gray-100">
-            Редактировать профиль
-          </button>
-          <button className="w-full bg-[#6A59A7] text-white py-3 font-poppins rounded-lg font-semibold ">
-            Выйти из учетной записи
-          </button>
-          <button className="w-full bg-[#6A59A7] text-white py-3 rounded-lg font-poppins font-semibold">
-            Удалить учетную запись
-          </button>
-        </div>
+       
       </div>
+        </div>
     );
   };
   
@@ -131,5 +148,5 @@ const Profiless = () => {
     </div>
   );
   
-  export default Profiless;
+  export default ProfilePage;
   

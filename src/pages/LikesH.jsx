@@ -1,4 +1,4 @@
-import React from "react";
+
 import { GoChevronLeft, GoHeart } from "react-icons/go";
 
 const LikesH = () => {
@@ -6,14 +6,14 @@ const LikesH = () => {
 
   return (
     <div className="min-h-screen container bg-gray-50 pt-2">
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 py-2 bg-white shadow">
-        <button className="text-gray-500"><GoChevronLeft /></button>
-        <h1 className="text-gray-700 text-lg font-semibold">Вы лайкнули</h1>
+    
+      <header className="flex items-center justify-between px-4 py-2 ">
+        <button className="text-[#ACACAC] cursor-pointer" onClick={()=> window.open("/", "_current")}><GoChevronLeft /></button>
+        <h1 className="text-[#ACACAC] font-mulish text-lg font-medium">Вы лайкнули</h1>
         <div className="w-6 h-6"></div>
       </header>
 
-      {/* Search Bar */}
+      
       <div className="p-4">
         <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg shadow-sm">
           <svg
@@ -33,7 +33,7 @@ const LikesH = () => {
           <input
             type="text"
             placeholder="Поиск знакомств"
-            className="ml-2 flex-grow bg-transparent focus:outline-none text-gray-600"
+            className="ml-2 flex-grow font-mulish rounded bg-transparent focus:outline-none text-gray-600"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ const LikesH = () => {
           >
             <div className="flex items-center">
               <div className="w-12 h-12 rounded-full bg-gray-300"></div>
-              <div className="ml-4 text-gray-600">
+              <div className="ml-4 font-mulish font-normal text-gray-600">
                 {profile.name}, {profile.age}
               </div>
             </div>

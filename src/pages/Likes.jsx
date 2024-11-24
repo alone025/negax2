@@ -1,6 +1,6 @@
-import React from 'react'
+
 import LikesItem from '../components/LikesItem'
-import Footer from '../components/Footer'
+
 
 const Likes = () => {
  

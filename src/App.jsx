@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -17,6 +17,9 @@ import Home from './pages/Home';
 import Question from './pages/Question';
 import Personals from './pages/Personals';
 import Profiless from './pages/Profiless';
+import ProfilePage from './pages/ProfilePage';
+import Comments from './pages/Comments';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -24,8 +27,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/question' element={<Question/>}></Route>
+        <Route path='/comments' element={<Comments/>}></Route>
+        <Route path='/blog' element={<Blog/>}></Route>
         <Route path='/personals' element={<Personals/>}></Route>
         <Route path='/profiless' element={<Profiless/>}></Route>
+        <Route path='/personals/:id' element={<ProfilePage/>}></Route>
         <Route path='/shopping' element={<Shopping/>}></Route>
         <Route path="/likes" element={<LIkelayout><Likes/></LIkelayout>} />
         <Route path='/likesh' element={<LikesH/>}></Route>

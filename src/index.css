@@ -1,11 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.bgcolorr{
-   background: linear-gradient(99.36deg, #6A59A7 32.12%, #EDABC6 73.62%);
+@font-face{
+  font-family: Pro Monument;
+  src: url('fonts/pro_monument.ttf');
 }
 
-.colorr{
-    color: linear-gradient(99.36deg, #6A59A7 32.12%, #EDABC6 73.62%);
+
+
+#root {
+  padding-bottom: 60px;
+}
+
+.rgb-text {
+  background: linear-gradient(99deg, #6a59a7 32.12%, #edabc6 73.62%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.font-poppins {
+   font-family: "Poppins", sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
  }
+
+ .font-mulish {
+   font-family: "Mulish", sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+ }
+
+ .font-pro-monument{
+  font-family: "Pro Monument", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+ }
+
+ .font-monsetrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+ .btn-rgb{
+   border-radius: 32px;
+background:  linear-gradient(99deg, #6A59A7 32.12%, #EDABC6 73.62%);
+ }
+ 
+ .bg-rgb{
+background: linear-gradient(99deg, #6A59A7 32.12%, #EDABC6 73.62%);
+ }
+
+ select#lang{
+    appearance: none;
+ 
+ }
+
+
+ .no-scrollbar::-webkit-scrollbar{
+  display: none;
+ }
+
+
+
+ /* Slider */
+
+ #slider-check::before{
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 1.5px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+ }
+
+ input#slider-checkInput:checked + .slider {
+  background-color: #634F9E;
+}
+
+input#slider-checkInput:focus + .slider {
+  box-shadow: 0 0 1px #B0B0B0;
+}
+
+input#slider-checkInput:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+} 
+
+#slider-check.round {
+  border-radius: 34px;
+}
+
+#slider-check.round:before {
+  border-radius: 50%;
+}
