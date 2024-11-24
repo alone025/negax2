@@ -20,6 +20,8 @@ import Profiless from './pages/Profiless';
 import ProfilePage from './pages/ProfilePage';
 import Comments from './pages/Comments';
 import Blog from './pages/Blog';
+import Market from './pages/Market';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path='/question' element={<Question/>}></Route>
         <Route path='/comments' element={<Comments/>}></Route>
         <Route path='/blog' element={<Blog/>}></Route>
+        <Route path='/market' element={<Market/>}></Route>
+
         <Route path='/personals' element={<Personals/>}></Route>
         <Route path='/profiless' element={<Profiless/>}></Route>
         <Route path='/personals/:id' element={<ProfilePage/>}></Route>
