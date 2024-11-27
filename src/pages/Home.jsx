@@ -53,7 +53,53 @@ const initialData = [
     city: "Минск",
     children: 0,
   },
+  {
+    id: 5,
+    name: "Екатерина Соколова",
+    age: 25,
+    maritalStatus: "Замужем",
+    country: "Украина",
+    city: "Киев",
+    children: 1,
+  },
+  {
+    id: 6,
+    name: "Иван Кузнецов",
+    age: 40,
+    maritalStatus: "Женат",
+    country: "Россия",
+    city: "Новосибирск",
+    children: 3,
+  },
+  {
+    id: 7,
+    name: "Анастасия Павлова",
+    age: 34,
+    maritalStatus: "Вдовец/Вдова",
+    country: "Казахстан",
+    city: "Нур-Султан",
+    children: 2,
+  },
+  {
+    id: 8,
+    name: "Сергей Михайлов",
+    age: 27,
+    maritalStatus: "Холост",
+    country: "Россия",
+    city: "Екатеринбург",
+    children: 0,
+  },
+  {
+    id: 9,
+    name: "Наталья Зайцева",
+    age: 45,
+    maritalStatus: "Разведен(а)",
+    country: "Беларусь",
+    city: "Гомель",
+    children: 2,
+  },
 ];
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -87,7 +133,8 @@ const Home = () => {
   const unlikeUser = () => {
     if (currentUser) {
       setData((prevData) => prevData.filter((user) => user.id !== currentUser.id));
-      setCurrentUser(null); // Reset current user
+      
+      randomizeUser()
     }
   };
 
