@@ -7,7 +7,7 @@ const RegisterVerification = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const navigate = useNavigate();
 
-  const initialTime = 5 * 60;
+  const initialTime = 5*60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
 
 
@@ -99,10 +99,11 @@ const RegisterVerification = () => {
         <button
           onClick={handleResend}
           disabled={formatTime(timeLeft) === '00:00' ? false : true}
-          className="block text-center mt-8 w-full disabled:opacity-45 text-[#634F9E] font-mulish text-sm font-medium mb-4 hover:underline"
+          className="block text-center disabled:cursor-not-allowed mt-8 w-full disabled:opacity-45 text-[#634F9E] font-mulish text-sm font-medium mb-4 hover:underline"
         >
           ПОВТОРНО ОТПРАВИТЬ КОД
         </button>
+        <p className="font-mulish font-normal text-xs text-center opacity-50" >Можете запросить еще один код только после истечения времени</p>
         <button disabled={otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== '' ? false : true} onClick={handleSurveyForm} className="mt-12 w-full bg-[#634F9E] disabled:opacity-45 font-poppins font-semibold text-white py-4 rounded-md text-sm  focus:outline-none focus:ring-2 focus:ring-[#634F9E]">
         Принимаю
         </button>
