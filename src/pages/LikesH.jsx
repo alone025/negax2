@@ -80,7 +80,7 @@ const LikesH = () => {
               <div className="w-12 h-12 rounded-full bg-gray-300"></div>
               <div
                 onClick={() => window.open("/personals/akk", "_current")}
-                className="ml-4 font-mulish font-normal text-gray-600"
+                className="ml-4 cursor-pointer font-mulish font-normal text-gray-600"
               >
                 {profile.name}, {profile.age}
               </div>
