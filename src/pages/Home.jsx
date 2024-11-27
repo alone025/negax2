@@ -193,11 +193,11 @@ const Home = () => {
       <section className="border shadow h-[450px] w-full container p-0 rounded-xl">
         <div className="h-[75%] w-full relative bg-[#D9D9D9] rounded-t-xl">
           <img src={dot} alt="" className="absolute top-7 right-7" />
-          <div className="absolute bottom-7 left-7 gap-2 flex flex-col w-full">
-            <p className="font-mulish font-medium text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
-            <div className="flex gap-2 w-full">
+          <div className="absolute w-fit bottom-7 left-7 gap-2 flex flex-col">
+            <p className="font-mulish font-medium w-fit text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
+            <div className="flex gap-2 w-fit">
               <img src={location} alt="" className="w-5" />
-              <span className="font-mulish text-sm text-[#000000] font-normal">{currentUser?.city || 'Шымкент'}, {currentUser?.country || 'Казахстан'}</span>
+              <span className="font-mulish w-fit text-sm text-[#000000] font-normal">{currentUser?.city || 'Шымкент'}, {currentUser?.country || 'Казахстан'}</span>
             </div>
           </div>
         </div>
