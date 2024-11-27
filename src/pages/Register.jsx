@@ -14,7 +14,7 @@ function handleClikRegisterState(e){
 }
 
   return (
-    <div className='mt-3 relative flex flex-col items-center justify-between container bg-white font-sans text-gray-800'>
+    <div className='mt-3 pb-12 relative flex flex-col items-center justify-between container bg-white font-sans text-gray-800'>
         <header className="absolute container top-0 flex justify-between items-center w-full">
         <div className="flex items-center gap-3 cursor-pointer">
                 <img className="w-[40px]  " src={logo} alt="" />

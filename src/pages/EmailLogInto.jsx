@@ -134,7 +134,7 @@ const EmailLogInto = () => {
           )}
           <Link
             className="mt-2 w-full rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E] hover:bg-[#634F9E] hover:text-white duration-300"
-            to="/login"
+            to="/register"
           >
             <button className="">
               <p className="font-poppins font-semibold text-sm md:text-lg">
