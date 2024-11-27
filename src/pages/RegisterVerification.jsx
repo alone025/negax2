@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../img/logo2.png"
 import { HiChevronLeft } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +7,16 @@ const RegisterVerification = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const navigate = useNavigate();
 
+  const initialTime = 5 * 60;
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
+
   function handleSurveyForm(e){
     e.preventDefault()
+   
+    if(otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== ''){
     navigate("/surveyform")
+    }
   }
 
 
@@ -24,8 +31,37 @@ const RegisterVerification = () => {
   };
 
   const handleResend = () => {
-    alert("Kod qayta yuborildi!");
+    setTimeLeft(300)
   };
+
+  
+
+  
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+  
+    if (timeLeft === 0) return;
+
+   
+    const timerId = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(timerId); 
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000); 
+
+  
+    return () => clearInterval(timerId);
+  }, [timeLeft]);
+
 
   return (
     <div className="flex flex-col items-center pt-16 px-4 min-h-screen   relative">
@@ -51,22 +87,23 @@ const RegisterVerification = () => {
               maxLength="1"
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={digit}
-              onChange={(e) => handleChange(e.target.value, index)}
+              onChange={(e) => handleChange(e.target.value.replace(/[^0-9]/g, ""), index)}
             />
           ))}
         </div>
         <p className="text-center font-mulish font-normal mt-8 text-sm text-[#5E5E5E] mb-4">
           Никому не сообщай код
           <br />
-          Истекает через <span className="font-semibold">04:59</span>
+          {formatTime(timeLeft) !== "00:00" && <>Истекает через <span className="font-semibold">{formatTime(timeLeft)}</span></>}
         </p>
         <button
           onClick={handleResend}
-          className="block text-center mt-8 w-full text-[#634F9E] font-mulish text-sm font-medium mb-4 hover:underline"
+          disabled={formatTime(timeLeft) === '00:00' ? false : true}
+          className="block text-center mt-8 w-full disabled:opacity-45 text-[#634F9E] font-mulish text-sm font-medium mb-4 hover:underline"
         >
           ПОВТОРНО ОТПРАВИТЬ КОД
         </button>
-        <button onClick={handleSurveyForm} className="mt-12 w-full bg-[#634F9E] font-poppins font-semibold text-white py-4 rounded-md text-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <button disabled={otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== '' ? false : true} onClick={handleSurveyForm} className="mt-12 w-full bg-[#634F9E] disabled:opacity-45 font-poppins font-semibold text-white py-4 rounded-md text-sm  focus:outline-none focus:ring-2 focus:ring-[#634F9E]">
         Принимаю
         </button>
        

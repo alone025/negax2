@@ -50,7 +50,7 @@ function handleClikRegisterState(e){
                 <button className="w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E] hover:bg-[#634F9E] hover:text-white duration-300">
                 <FaTelegram className="text-[28px]" /><p className="font-poppins font-semibold text-sm md:text-lg">через Telegram</p>
                 </button>
-                <button className=" w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E] hover:bg-[#634F9E] hover:text-white duration-300">
+                <button onClick={()=> window.open("/login-email", "_current")} className=" w-ful rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E] hover:bg-[#634F9E] hover:text-white duration-300">
                 <MdOutlineEmail className="text-[28px]" /><p className="font-poppins font-semibold text-sm md:text-lg">через email</p>
                 </button>
                  

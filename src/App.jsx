@@ -3,7 +3,6 @@ import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import LIkelayout from './Layouts/LIkelayout';
-import Likes from './pages/Likes';
 import LikesH from './pages/LikesH';
 import Shopping from './pages/Shopping';
 import RegisterState from './pages/RegisterState';
@@ -21,6 +20,8 @@ import ProfilePage from './pages/ProfilePage';
 import Comments from './pages/Comments';
 import Blog from './pages/Blog';
 import Market from './pages/Market';
+import EmailLogin from './pages/EmailLogin';
+import EmailLogInto from './pages/EmailLogInto';
 
 
 function App() {
@@ -37,11 +38,14 @@ function App() {
         <Route path='/profiless' element={<Profiless/>}></Route>
         <Route path='/personals/:id' element={<ProfilePage/>}></Route>
         <Route path='/shopping' element={<Shopping/>}></Route>
-        <Route path="/likes" element={<LIkelayout><Likes/></LIkelayout>} />
+        <Route path="/likes" element={<LIkelayout/>} />
         <Route path='/likesh' element={<LikesH/>}></Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/login-email" element={<EmailLogin />} />
+        <Route path='/loginto-wemail' element={<EmailLogInto/>}/>
         <Route path="/register" element={<Register />} />
         <Route path='/registerstate' element={<RegisterState/>}></Route>
+        
         <Route path='/registerverification' element={<RegisterVerification/>}></Route>
         <Route path='/surveyform' element={<SurveyForm/>}></Route>
         <Route path='/personalform' element={<PersonalForm/>}></Route>

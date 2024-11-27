@@ -1,15 +1,15 @@
 
 import {  HiOutlineX } from 'react-icons/hi'
 
-function LikesItem() {
+function LikesItem({dataC, hnd}) {
   return (
-    <div className='w-full relative min-h-[230px] bg-[#ACACAC] text-white rounded-xl'>
-        <div className='absolute top-4 left-4 flex flex-col font-semibold text-[12px] leading-4'>
-            <p className='font-mulish font-semibold'>Катя, 20 лет</p>
-            <p className='font-mulish font-semibold'>Казахстан, Астана</p>
-            <p className='font-mulish font-semibold'>№8836</p>
+    <div  className='w-full relative min-h-[230px] bg-[#ACACAC] text-white rounded-xl'>
+        <div onClick={()=> window.open("/personals/ds", "_current")} className='absolute top-4 left-4 flex flex-col font-semibold text-[12px] leading-4'>
+            <p className='font-mulish font-semibold'>{dataC.name}, {dataC.age} лет</p>
+            <p className='font-mulish font-semibold'>{dataC.country}, {dataC.city}</p>
+            <p className='font-mulish font-semibold'>№{dataC.idC}</p>
         </div>
-        <div className='absolute bg-white text-gray-400 left-[10%] w-10 h-10 rounded-full flex justify-center items-center text-3xl bottom-6'>
+        <div onClick={()=> hnd(dataC.id)} className='absolute bg-white text-gray-400 left-[10%] w-10 h-10 rounded-full flex justify-center items-center text-3xl bottom-6'>
         <HiOutlineX />
         </div>
         <div className='absolute bg-rgb right-[10%] w-10 h-10 rounded-full flex justify-center items-center text-3xl bottom-6'>

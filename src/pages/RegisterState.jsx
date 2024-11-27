@@ -5,11 +5,30 @@ import { useNavigate } from "react-router-dom";
 const RegisterState = () => {
   const [countryCode, setCountryCode] = useState("+62");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [errors, setErrors] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [checkboxError, setCheckboxError] = useState(false);
+
+
   const navigate = useNavigate();
 
   function registerVerification(e){
+
+
     e.preventDefault();
-    navigate("/registerverification")
+
+    if(!countryCode){
+      setErrors('Выберите код страны!')
+    }else if (!phoneNumber){
+      setErrors("Заполните номер телефона!")
+    }else if(!termsAccepted){
+      setErrors('Согласитесь с правилами!')
+      setCheckboxError(true);
+      setTimeout(() => setCheckboxError(false), 1000);
+    }else{
+      navigate("/registerverification")
+    }
+    
   }
 
 
@@ -53,7 +72,7 @@ const RegisterState = () => {
               className="w-full border border-solid border-[#ACACAC] rounded-md p-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none"
               placeholder="+62812 0101 0101"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value.replace(/[^0-9+]/g, ""))}
             />
             <span className="absolute right-3 top-2/4 transform -translate-y-2/4 text-gray-500">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
@@ -62,16 +81,22 @@ const RegisterState = () => {
             </span>
           </div>
         </div>
-        <button onClick={registerVerification} className="mt-12 w-full bg-[#634F9E] font-poppins font-semibold text-white py-4 rounded-md text-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <button onClick={registerVerification} className="mt-12 w-full bg-[#634F9E] font-poppins font-semibold text-white py-4 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#634F9E]">
           Продолжить
         </button>
+        {errors !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{errors}</p>}
         <div className="mt-6 text-xs font-light text-[#000000] font-poppins">
-          <label className="flex items-start">
-            <input
+          <label className="flex gap-2 items-start">
+          <div className={`bgh h-[15px] p-[1px] rounded-[3px] ${checkboxError ? 'bg-red-600' : ''}`}>
+          <input
               type="checkbox"
-              className="mr-2 border-gray-300 active:bg-[#6A59A7] rounded focus:ring-purple-500"
+              onChange={() => setTermsAccepted(!termsAccepted)}
+              checked={termsAccepted}
+              id="terms"
+              className={`cursor-pointer accent-[#6A59A7] rounded focus:ring-purple-500 `}
             />
-            <span>Для регистрации вам должно быть не менее 18 лет. Регистрируясь, вы
+          </div>
+            <span className="font-poppins">Для регистрации вам должно быть не менее 18 лет. Регистрируясь, вы
             соглашаетесь с Лицензионным соглашением NIKAH.SPACE, Политикой
             приватности и Правилами оплаты.</span>
           </label>

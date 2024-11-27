@@ -5,20 +5,26 @@ import logo from "../img/logo2.png";
 const FotoPage = () => {
   const navigate = useNavigate();
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [error, setError] = useState("");
+
 
   const logined = () => {
     const dataL = JSON.parse(localStorage.getItem("logined"));
     if (!dataL) {
-      localStorage.setItem("logined", "true");
-      navigate("/");
+      if (uploadedImages.length === 0) setError("Загрузите хотя бы одно изображение!")
+        else {
+          localStorage.setItem("logined", "true");
+      navigate("/")
+    };
     }else{
-      navigate('/')
+      if (uploadedImages.length === 0) setError("Загрузите хотя бы одно изображение!")
+      else navigate('/')
     }
   };
 
   const handleContactForm = (e) => {
     e.preventDefault();
-    navigate("/kontakform");
+    navigate("/kontakform")
   };
 
   const handleFileChange = (event) => {
@@ -116,11 +122,15 @@ const FotoPage = () => {
           Назад
         </button>
         <button
+        disabled={uploadedImages.length === 0 ? true : false}
           onClick={logined}
-          className="w-full py-3 text-base btn-rgb text-white font-mulish rounded-full"
+          className="w-full py-3 disabled:opacity-40 text-base btn-rgb text-white font-mulish rounded-full"
         >
           Сохранить
         </button>
+
+        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
+
       </div>
     </div>
   );

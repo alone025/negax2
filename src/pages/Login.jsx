@@ -22,7 +22,7 @@ const Login = () => {
     </linearGradient>
   </defs>
 </svg>
-                <select id="lang" className="font-mulish rgb-text outline-none text-base md:text-lg">
+                <select id="lang" className="font-mulish cursor-pointer rgb-text outline-none text-base md:text-lg">
                     <option value="rus">РУС</option>
                     <option value="eng">ENG</option>
                 </select>
@@ -41,7 +41,7 @@ const Login = () => {
                 <button className="hover:bg-[#634F9E] hover:text-white duration-300 w-full rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E]">
                 <FaTelegram className="text-[28px]" /><p className="font-poppins font-semibold text-sm md:text-lg">Войти через Telegram</p>
                 </button>
-                <button className="hover:bg-[#634F9E] hover:text-white duration-300 w-full rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E]">
+                <button onClick={()=> window.open("/loginto-wemail", "_current")} className="hover:bg-[#634F9E] hover:text-white duration-300 w-full rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E]">
                 <MdOutlineEmail className="text-[28px]" /><p className="font-poppins font-semibold text-sm md:text-lg">Войти через email</p>
                 </button>
               </div>

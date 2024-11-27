@@ -2,7 +2,7 @@ const SettingForm = () => {
   const links = [
     {
       p: "Редактировать профиль",
-        link:''
+        link:'/profiless'
     },
     {
       p: "Сменить номер телефона 77051669055",

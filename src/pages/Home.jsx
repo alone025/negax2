@@ -9,14 +9,59 @@ import Footer from "../components/Footer";
 import location from "../img/location.svg";
 import vector from "../img/vector.svg";
 import xxx from "../img/xIcon.svg";
-import group1 from "../img/share.svg";
+import group1 from "../img/refresh2.svg";
 import dot from '../img/3dot.svg'
 import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
 import SettingForm from "../components/SettingForm";
 
+
+const initialData = [
+  {
+    id: 1,
+    name: "Алексей Иванов",
+    age: 35,
+    maritalStatus: "Женат",
+    country: "Россия",
+    city: "Москва",
+    children: 2,
+  },
+  {
+    id: 2,
+    name: "Мария Петрова",
+    age: 28,
+    maritalStatus: "Не замужем",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    children: 0,
+  },
+  {
+    id: 3,
+    name: "Ольга Смирнова",
+    age: 42,
+    maritalStatus: "Разведен(а)",
+    country: "Казахстан",
+    city: "Алматы",
+    children: 1,
+  },
+  {
+    id: 4,
+    name: "Дмитрий Васильев",
+    age: 30,
+    maritalStatus: "Холост",
+    country: "Беларусь",
+    city: "Минск",
+    children: 0,
+  },
+];
+
 const Home = () => {
   const navigate = useNavigate();
+
+  const [data, setData] = useState(initialData); 
+  const [currentUser, setCurrentUser] = useState(null);
+
+  
 
   useEffect(()=>{
     const dataL = JSON.parse(localStorage.getItem('logined'))
@@ -24,6 +69,28 @@ const Home = () => {
       navigate('/login')
     }
   },[])
+
+  useEffect(() => {
+    randomizeUser();
+  }, []);
+
+
+  const randomizeUser = () => {
+    if (data.length > 0) {
+      const randomIndex = Math.floor(Math.random() * data.length);
+      setCurrentUser(data[randomIndex]);
+    } else {
+      setCurrentUser(null);
+    }
+  };
+
+  const unlikeUser = () => {
+    if (currentUser) {
+      setData((prevData) => prevData.filter((user) => user.id !== currentUser.id));
+      setCurrentUser(null); // Reset current user
+    }
+  };
+
 
   function handleLikes() {
     navigate("/likes");
@@ -49,7 +116,7 @@ const Home = () => {
   }
 
   return (
-    <div className="flex flex-col items-center pt-16 px-4 min-h-screen   relative">
+    <div className="flex pb-12 flex-col items-center pt-16 px-4 min-h-screen relative">
     
       <header className="absolute container top-5 flex justify-between items-center w-full">
         <div onClick={handleSeting} className="cursor-pointer">
@@ -119,7 +186,7 @@ const Home = () => {
            </div>
           </span>
         </div>
-        <div onClick={handleSetting2} className="w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={handleSetting2} className="w-[65px] h-[65px] cursor-pointer rounded-full shadow border flex items-center justify-center">
           <img src={setting} alt="" />
         </div>
       </main>
@@ -127,32 +194,33 @@ const Home = () => {
         <div className="h-[75%] w-full relative bg-[#D9D9D9] rounded-t-xl">
           <img src={dot} alt="" className="absolute top-7 right-7" />
           <div className="absolute bottom-7 left-7 gap-2 flex flex-col w-full">
-            <p className="font-mulish font-medium text-[#5E5E5E] text-xl">Алексей, 38</p>
+            <p className="font-mulish font-medium text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
             <div className="flex gap-2 w-full">
               <img src={location} alt="" className="w-5" />
-              <span className="font-mulish text-sm text-[#000000] font-normal">Шымкент, Казахстан</span>
+              <span className="font-mulish text-sm text-[#000000] font-normal">{currentUser?.city || 'Шымкент'}, {currentUser?.country || 'Казахстан'}</span>
             </div>
           </div>
         </div>
         <div className="flex px-5 flex-col mt-3 gap-1 ">
           <p className="text-sm font-mulish font-medium text-[#000000]">Семейное положение:</p>
           <p className=" text-[10px] font-mulish font-medium text-white bg-[#6A59A7] w-20 flex items-center justify-center">
-            Разведен(а)
+            
+            {currentUser?.maritalStatus || 'Разведен(а)'}
           </p>
           <p className="text-sm font-mulish font-medium text-[#000000]">Количество детей:</p>
           <p className=" text-[10px] font-mulish font-medium text-white bg-[#6A59A7] w-4 flex items-center justify-center">
-            7
+            {currentUser?.children || '7'}
           </p>
         </div>
       </section>
       <section className="container p-5 flex justify-between items-center">
-        <div className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={randomizeUser} className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
           <img src={group1} alt="" />
         </div>
-        <div className=" relative cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={unlikeUser} className=" relative cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
           <img src={xxx} alt="" />
         </div>
-        <div className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={randomizeUser} className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
           <img src={vector} alt="" />
         </div>
       </section>

@@ -3,16 +3,38 @@ import logo from "../img/logo2.png";
 import { useNavigate } from "react-router-dom";
 const SurveyForm = () => {
   const [gender, setGender] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [national, setNational] = useState("");
+  const [errors, setErrors] = useState("");
+
+
+
   const navigate = useNavigate();
+
+  function  handlePersonalForm(e) {
+    e.preventDefault();
+    setErrors('')
+ 
+
+    if (!gender) setErrors("Пол обязателен!");
+else if (!name) setErrors("Имя обязательно!");
+else if (!surname) setErrors("Фамилия обязательна!");
+else if (!country) setErrors("Страна обязательна!");
+else if (!city) setErrors("Город обязателен!");
+else if (!national) setErrors("Гражданство обязательно!");
+else{
+  navigate("/personalform") 
+  
+}
+    
+  }
 
   function handlePersonalFormPrev(e) {
     e.preventDefault();
     navigate("/registerstate");
-  }
-
-  function handlePersonalForm(e) {
-    e.preventDefault();
-    navigate("/personalform");
   }
 
   const handleGenderSelect = (selectedGender) => {
@@ -150,11 +172,15 @@ const SurveyForm = () => {
             Как к вам можно обращаться?
           </label>
           <input
+          onChange={(e)=> setName(e.target.value)}
+          value={name}
             type="text"
             placeholder="Имя"
             className="w-full mb-3 font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
           />
           <input
+          onChange={(e)=> setSurname(e.target.value)}
+          value={surname}
             type="text"
             placeholder="Фамилия"
             className="w-full px-3 font-mulish py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"
@@ -166,24 +192,26 @@ const SurveyForm = () => {
           <label className="block font-mulish font-normal text-base text-[#242430] mb-2">
             Откуда вы?
           </label>
-          <select className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+          <select onChange={(e)=> setCountry(e.target.value)}
+          value={country} className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Страна</option>
             <option value="Uzbekistan">Узбекистан</option>
             <option value="Kazakhstan">Казахстан</option>
           </select>
-          <select className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+          <select onChange={(e)=> setCity(e.target.value)}
+          value={city} className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Город</option>
             <option value="Tashkent">Ташкент</option>
             <option value="Almaty">Алматы</option>
           </select>
-          <select className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+          <select onChange={(e)=> setNational(e.target.value)}
+          value={national} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Национальность</option>
             <option value="Uzbek">Узбек</option>
             <option value="Kazakh">Казах</option>
           </select>
         </div>
 
-        {/* Navigation buttons */}
         <div className="flex justify-between gap-3 flex-col">
           <button onClick={handlePersonalFormPrev} className="w-full text-base font-normal font-mulish py-3 text-purple-700 border-2 border-purple-700 rounded-full text-center">
             Назад
@@ -194,6 +222,7 @@ const SurveyForm = () => {
           >
             Далее
           </button>
+        {errors !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{errors}</p>}
         </div>
       </div>
     </div>

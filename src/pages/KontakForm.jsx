@@ -1,9 +1,23 @@
 
+import { useState } from "react";
 import logo from "../img/logo2.png"
 import { useNavigate } from "react-router-dom";
 const KontakForm = () => {
 
   const navigate = useNavigate();
+
+  const [wa, setWA] = useState("");
+const [ins, setIns] = useState("");
+const [tg, setTG] = useState("");
+const [fc, setFC] = useState("");
+const [future, setFuture] = useState("");
+
+const [about, setAbout] = useState("");
+
+
+
+
+  const [error, setError] = useState("");
 
 
   function handleFotoPagePrev(e){
@@ -13,7 +27,13 @@ const KontakForm = () => {
 
   function handleFotoPage(e){
     e.preventDefault()
-    navigate("/fotopage")
+    if (!wa) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
+    else if (!ins) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
+    else if (!tg) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
+    else if (!fc) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
+    else if (!future) setError("Напишите о своей будущей супруге!");
+    else if (!about) setError("Напишите о себе!");
+    else navigate("/fotopage")
   }
 
 
@@ -67,21 +87,29 @@ const KontakForm = () => {
           <h3 className="block font-mulish font-normal text-base text-[#242430] mb-2">Контакты</h3>
           <div className="space-y-3">
             <input
+            onChange={(e)=>setWA(e.target.value)}
+            value={wa}
               type="text"
               placeholder="Номер в WhatsApp:"
               className="w-full px-3 py-2 font-mulish outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"
             />
             <input
+            onChange={(e)=>setIns(e.target.value)}
+            value={ins}
               type="text"
               placeholder="Ссылка на instagram:"
               className="w-full px-3 py-2 font-mulish outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"
             />
             <input
+                 onChange={(e)=>setTG(e.target.value)}
+                 value={tg}
               type="text"
               placeholder="Ссылка на telegram:"
               className="w-full px-3 py-2 font-mulish outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"
             />
             <input
+                 onChange={(e)=>setFC(e.target.value)}
+                 value={fc}
               type="text"
               placeholder="Ссылка на facebook:"
               className="w-full px-3 py-2 font-mulish outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"
@@ -91,10 +119,12 @@ const KontakForm = () => {
         <div className="mb-6 border border-[#634F9E] p-5 rounded-2xl">
           <div className="space-y-3">
             <h1 className="block font-mulish font-normal text-base text-[#242430] mb-2">О будущей супруге:</h1>
-            <textarea placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
+            <textarea      onChange={(e)=>setFuture(e.target.value)}
+            value={future} placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
             
-            <h1 className="block font-mulish font-normal text-base text-[#242430] mb-2" >О cебе:</h1>
-            <textarea placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
+            <h1    className="block font-mulish font-normal text-base text-[#242430] mb-2" >О cебе:</h1>
+            <textarea onChange={(e)=>setAbout(e.target.value)}
+            value={about} placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
             
           </div>
         </div>
@@ -111,6 +141,8 @@ const KontakForm = () => {
             Далее
           </button>
         </div>
+        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
+
       </div>
     </div>
   );

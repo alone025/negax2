@@ -1,21 +1,50 @@
-
+import { useState } from "react";
 import { GoChevronLeft, GoHeart } from "react-icons/go";
+import Footer from "../components/Footer";
 
 const LikesH = () => {
-  const profiles = Array(10).fill({ name: "Катя", age: 20 });
+  const [profiles, setProfiles] = useState(
+    Array(10)
+      .fill(null)
+      .map((_, index) => ({ id: index, name: "Катя", age: 20 + index }))
+  );
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = (id) => {
+    const filteredProfiles = profiles.filter((profile) => profile.id !== id);
+    setProfiles(filteredProfiles);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const normalizedSearchTerm = searchTerm.trim();
+
+  const filteredProfiles = profiles.filter(
+    (profile) =>
+      profile.name.toLowerCase().includes(normalizedSearchTerm.toLowerCase()) ||
+      profile.age.toString().includes(normalizedSearchTerm)
+  );
 
   return (
-    <div className="min-h-screen container bg-gray-50 pt-2">
-    
+    <div className="min-h-screen pb-[50px] container pt-2">
       <header className="flex items-center justify-between px-4 py-2 ">
-        <button className="text-[#ACACAC] cursor-pointer" onClick={()=> window.open("/", "_current")}><GoChevronLeft /></button>
-        <h1 className="text-[#ACACAC] font-mulish text-lg font-medium">Вы лайкнули</h1>
+        <button
+          className="text-[#ACACAC] cursor-pointer"
+          onClick={() => window.open("/", "_current")}
+        >
+          <GoChevronLeft />
+        </button>
+        <h1 className="text-[#ACACAC] font-mulish text-lg font-medium">
+          Вы лайкнули
+        </h1>
         <div className="w-6 h-6"></div>
       </header>
 
-      
       <div className="p-4">
-        <div className="flex items-center bg-gray-100 px-3 py-2 rounded-lg shadow-sm">
+        <div className="flex items-center border border-solid border-[#ACACAC] px-3 py-2 rounded-lg shadow-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -32,6 +61,8 @@ const LikesH = () => {
           </svg>
           <input
             type="text"
+            value={searchTerm}
+            onChange={handleSearchChange}
             placeholder="Поиск знакомств"
             className="ml-2 flex-grow font-mulish rounded bg-transparent focus:outline-none text-gray-600"
           />
@@ -40,23 +71,30 @@ const LikesH = () => {
 
       {/* Profile List */}
       <div className="px-4">
-        {profiles.map((profile, index) => (
+        {filteredProfiles.map((profile, index) => (
           <div
             key={index}
             className="flex items-center justify-between py-3 border-b border-gray-200"
           >
             <div className="flex items-center">
               <div className="w-12 h-12 rounded-full bg-gray-300"></div>
-              <div className="ml-4 font-mulish font-normal text-gray-600">
+              <div
+                onClick={() => window.open("/personals/akk", "_current")}
+                className="ml-4 font-mulish font-normal text-gray-600"
+              >
                 {profile.name}, {profile.age}
               </div>
             </div>
-            <button className="w-10 h-10 rounded-full bg-gradient-to-r text-white font-extrabold from-purple-500 to-pink-500 flex items-center justify-center shadow">
-            <GoHeart />
+            <button
+              onClick={() => handleChange(profile.id)}
+              className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
+            >
+              <GoHeart />
             </button>
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

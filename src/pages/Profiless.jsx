@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Gallery from "../components/Galery";
+import SettingForm from "../components/SettingForm";
 import logo from "../img/logo.png"
 import setting from "../img/setting.png"
 
@@ -36,17 +38,40 @@ const Profiless = () => {
       ],
     };
   
+  const [isMenuOpen2, setIsMenuOpen2] = useState(false);
+
+
+    const handleSetting2 = () => {
+      setIsMenuOpen2((prev) => !prev);
+    };
+  
+
     return (
-      <div className="flex flex-col container pt-16 px-4 min-h-screen relative">
+      <div className="flex flex-col pb-[50px] container pt-16 px-4 min-h-screen relative">
     <header className="absolute container top-5 flex justify-between items-center w-full">
           <div className="flex items-center gap-3">
               <img className="w-[40px]  " src={logo} alt="" />
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal rgb-text cursor-pointer font-pro-monument text-[13px] md:text-2xl leading-4 ">NIKAH.SPACE</h1>
           </div>
-          <div className="cursor-pointer" >
+          <div onClick={handleSetting2} className="cursor-pointer" >
             <img src={setting} alt="" />
           </div>
     </header>
+
+    <div
+        className={`fixed cursor-pointer rounded-l-[30px] top-0 h-full w-[270px] bg-white shadow-lg transform ${
+          isMenuOpen2 ? "right-0" : "-translate-x-full left-0"
+        } transition-transform duration-300 ease-in-out z-50`}
+      >
+        <SettingForm />
+      </div>
+
+    {isMenuOpen2 && (
+        <div
+          onClick={handleSetting2}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
   
         
         <div className="mt-6">

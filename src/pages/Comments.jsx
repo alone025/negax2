@@ -3,9 +3,12 @@ import setting from "../img/setting.svg"
 import time from "../img/time.svg"
 import img1 from "../img/otziv1.png"
 import Footer from "../components/Footer"
+import { useState } from "react"
+import SettingForm from "../components/SettingForm"
 
 
 const Comments = () => {
+    const [isMenuOpen2, setIsMenuOpen2] = useState(false);
 
 
     const cardData = [
@@ -20,6 +23,10 @@ const Comments = () => {
         },
     ]
 
+    const handleSetting2 = () => {
+        setIsMenuOpen2((prev) => !prev);
+      };
+
   return (
    <div className="container pt-[68px]">
      <header className="absolute container top-5 flex justify-between items-center w-full">
@@ -27,10 +34,27 @@ const Comments = () => {
               <img className="w-[40px]  " src={logo} alt="" />
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] md:text-2xl leading-4">NIKAH.SPACE</h1>
           </div>
-          <div className="cursor-pointer" >
+          <div onClick={handleSetting2} className="cursor-pointer" >
             <img src={setting} alt="" />
-          </div>
+          </div> 
     </header>
+
+
+    <div
+        className={`fixed cursor-pointer rounded-l-[30px] top-0 h-full w-[270px] bg-white shadow-lg transform ${
+          isMenuOpen2 ? "right-0" : "-translate-x-full left-0"
+        } transition-transform duration-300 ease-in-out z-50`}
+      >
+        <SettingForm />
+      </div>
+
+
+    {isMenuOpen2 && (
+        <div
+          onClick={handleSetting2}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
 
 
         <h1 className="text-2xl md:text-[34px] rgb-text font-monsetrat text-center leading-7">Отзывы</h1>
@@ -45,7 +69,7 @@ const Comments = () => {
                 }
             </div>
             <div className="pagination w-full flex justify-center mb-5">
-                <div className="div flex bg-[#FFF] text-sm font-mulish font-normal text-[#FF9BAD] flex-row">
+                <div className="div cursor-pointer flex bg-[#FFF] text-sm font-mulish font-normal text-[#FF9BAD] flex-row">
                     <p className="border-y-2 w-8 h-8 flex items-center justify-center border-l-2 border-r-2 rounded-l border-[#DEE2E6]">1</p>
                     <p className="border-y-2 w-8 h-8 flex items-center justify-center border-r-2 border-[#DEE2E6]">2</p>
                     <p className="border-y-2 w-8 h-8 flex items-center justify-center border-r-2 border-[#DEE2E6]">3</p>

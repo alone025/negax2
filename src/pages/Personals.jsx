@@ -4,6 +4,7 @@ import question from "../img/question.svg";
 import logo from "../img/logo2.png";
 import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
+import Footer from "../components/Footer";
 
 const Personals = () => {
 
@@ -157,6 +158,7 @@ const Personals = () => {
           <i className="fas fa-user text-xl"></i>
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

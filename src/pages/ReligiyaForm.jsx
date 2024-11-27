@@ -1,8 +1,17 @@
 
+import { useState } from "react";
 import logo from "../img/logo2.png"
 import { useNavigate } from "react-router-dom";
 const ReligiyaForm = () => {
+
 const navigate = useNavigate();
+
+const [quron, setQuron] = useState("");
+const [namoz, setNamoz] = useState("");
+const [hijob, setHijob] = useState("");
+
+
+  const [error, setError] = useState("");
 
 
 function handleKontakFormPrev(e){
@@ -12,7 +21,10 @@ function handleKontakFormPrev(e){
 
 function handleKontakForm(e){
     e.preventDefault();
-    navigate("/kontakform")
+    if (!quron) setError("Заполните все поля!");
+    else if (!namoz) setError("Заполните все поля!");
+    else if (!hijob) setError("Заполните все поля!");
+   else navigate("/kontakform")
 }
 
 
@@ -65,17 +77,17 @@ function handleKontakForm(e){
         <div className="mb-6 border border-[#634F9E] p-5 rounded-2xl">
           <h3 className="block font-mulish font-normal text-base text-[#242430] mb-2">Религия</h3>
           <div className="space-y-3">
-            <select className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+            <select onChange={(e)=> setNamoz(e.target.value)} value={namoz} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Читаете ли вы намаз?</option>
               <option value="single">Да</option>
               <option value="married">Нет</option>
             </select>
-            <select className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+            <select onChange={(e)=> setQuron(e.target.value)} value={quron} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Умеете ли вы читать К&rsquo;уран?</option>
               <option value="0">Да</option>
               <option value="1-2">Нет</option>
             </select>
-            <select className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+            <select onChange={(e)=> setHijob(e.target.value)} value={hijob} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Носите ли вы бороду?</option>
               <option value="hanafi">Ханафи</option>
               <option value="shafi">Шафи</option>
@@ -94,7 +106,10 @@ function handleKontakForm(e){
           >
             Далее
           </button>
+          
         </div>
+        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
+
       </div>
     </div>
   );
