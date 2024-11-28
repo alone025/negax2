@@ -44,7 +44,7 @@ const FotoPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center pt-[70px] min-h-screen relative">
+    <div className="flex flex-col pb-[50px] items-center justify-center pt-[70px] min-h-screen relative">
       <header className="absolute container top-5 flex justify-between items-center w-full">
         <div className="flex items-center gap-3">
           <img className="w-[40px]" src={logo} alt="" />

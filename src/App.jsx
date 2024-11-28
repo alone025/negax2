@@ -22,6 +22,8 @@ import Blog from './pages/Blog';
 import Market from './pages/Market';
 import EmailLogin from './pages/EmailLogin';
 import EmailLogInto from './pages/EmailLogInto';
+import BlogDetail from './pages/BlogPage';
+import MarketDetail from './pages/MarketPage';
 
 
 function App() {
@@ -32,7 +34,10 @@ function App() {
         <Route path='/question' element={<Question/>}></Route>
         <Route path='/comments' element={<Comments/>}></Route>
         <Route path='/blog' element={<Blog/>}></Route>
+        <Route path='/blog/:id' element={<BlogDetail/>}></Route>
+
         <Route path='/market' element={<Market/>}></Route>
+        <Route path='/market/:id' element={<MarketDetail/>}></Route>
 
         <Route path='/personals' element={<Personals/>}></Route>
         <Route path='/profiless' element={<Profiless/>}></Route>

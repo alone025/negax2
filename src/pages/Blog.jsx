@@ -2,6 +2,7 @@ import logo from "../img/logo2.png"
 import time from "../img/time.svg"
 import img1 from "../img/blog1.png"
 import Footer from "../components/Footer"
+import { useState } from "react"
 
 
 const Blog = () => {
@@ -19,6 +20,12 @@ const Blog = () => {
         },
     ]
 
+    const [dote, setDote] = useState(false)
+
+    const toggleDropdown = () => {
+      setDote(!dote);
+    };
+
   return (
    <div className="container pt-[68px]">
      <header className="absolute container top-5 flex justify-between items-center w-full">
@@ -27,9 +34,25 @@ const Blog = () => {
               <h1 onClick={()=> window.open("/", "_current")} className="font-normal cursor-pointer rgb-text font-pro-monument text-[13px] md:text-2xl leading-4">NIKAH.SPACE</h1>
           </div>
           <div className="cursor-pointer" >
-            <p className="rgb-text text-base font-mulish font-bold">Категории</p>
+            <p onClick={toggleDropdown} className="rgb-text text-base font-mulish font-bold">Категории</p>
+            {dote && (
+        <div className="absolute z-50 cursor-pointer right-0 top-7 w-fit bg-white rounded-md shadow-lg">
+          <button onClick={toggleDropdown} className="w-full font-mulish z-50 px-4 py-2 text-left text-gray-700 hover:bg-blue-500 hover:text-white rounded-t-md">
+          Категории
+          </button>
+          
+        </div>
+      )}
           </div>
     </header>
+
+    
+    {dote && (
+        <div
+          onClick={toggleDropdown}
+          className="fixed inset-0 z-40"
+        />
+      )}
   
             <input type="text" className="mt-5 font-mulish placeholder:text-[#6C757D] text-[#000] font-normal text-base px-3 py-2 rounded border border-solid border-[#CED4DA] w-full outline-none" placeholder="Поиск" />
 
@@ -69,7 +92,7 @@ const CardOtziv = ({img}) => {
             <p className="text-sm font-monsetrat font-normal">«У двух любящих сердец, наилучший итог - это
             брак. قلب</p>
             <div className="btm-cont mt-4 flex flex-row justify-between">
-            <p className="rgb-text text-xs font-normal font-mulish">читать далее</p>
+            <p onClick={()=> window.open("/blog/asd", "_current")} className="rgb-text text-xs font-normal font-mulish">читать далее</p>
             <div className="tm flex flex-row gap-1">
                 <p className="rgb-text text-sm font-normal font-mulish">26.02.24</p>
                 <img src={time} alt="" />

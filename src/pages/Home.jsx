@@ -107,6 +107,20 @@ const Home = () => {
   const [data, setData] = useState(initialData); 
   const [currentUser, setCurrentUser] = useState(null);
 
+  const [dote, setDote] = useState(false)
+
+  const toggleDropdown = () => {
+    setDote(!dote);
+  };
+
+  const [doteModal, setDoteModal] = useState(false);
+
+
+  const toogleModal = () => {
+    setDoteModal(!doteModal);
+    setDote(false);
+  };
+
   
 
   useEffect(()=>{
@@ -214,6 +228,30 @@ const Home = () => {
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
         />
       )}
+
+
+{dote && (
+        <div
+          onClick={toggleDropdown}
+          className="fixed inset-0 z-40"
+        />
+      )}
+
+      
+{doteModal && <div onClick={toogleModal} className="fixed bg-black bg-opacity-50 inset-0 z-40" />}
+
+{
+ doteModal &&  <dialog id="modal" className="fixed max-w-[300px] w-full z-50 p-2 flex flex-col rounded top-1/2">
+ <p className="text-base lg:text-lg font-mulish font-normal">Причина вашей жалобы.</p>
+ <input type="text" placeholder="Причина...." className="my-2 border border-[#634F9E] rounded outline-none p-2 font-mulish " />
+<div className="btngroup flex flex-row gap-2">
+<button id="closeModal" className="border border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded" onClick={toogleModal}>Отмена</button>
+<button id="closeModal" className="bg-[#634F9E] border border-[#634F9E] font-mulish p-1 text-white text-xs lg:text-base rounded" onClick={toogleModal}>Отправка</button>
+</div>  
+</dialog>
+}
+
+
       {/* main */}
       <main className="container p-5 flex justify-between items-center">
         <div
@@ -239,7 +277,19 @@ const Home = () => {
       </main>
       <section className="border shadow h-[450px] w-full container p-0 rounded-xl">
         <div className="h-[75%] w-full relative bg-[#D9D9D9] rounded-t-xl">
-          <img src={dot} alt="" className="absolute top-7 right-7" />
+          {/*  */}
+          <img onClick={toggleDropdown} src={dot} alt="" className="absolute cursor-pointer top-7 right-7" />
+          {/*  */}
+          {dote && (
+        <div className="absolute z-50 cursor-pointer right-0 top-16 w-fit bg-white rounded-md shadow-lg">
+          <button onClick={toogleModal} className="w-full font-mulish z-50 px-4 py-2 text-left text-gray-700 hover:bg-blue-500 hover:text-white rounded-t-md">
+          Жалоба
+          </button>
+          
+        </div>
+      )}
+          
+          {/*  */}
           <div className="absolute w-fit bottom-7 left-7 gap-2 flex flex-col">
             <p className="font-mulish font-medium w-fit text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
             <div className="flex gap-2 w-fit">

@@ -4,7 +4,7 @@ import {  HiOutlineX } from 'react-icons/hi'
 function LikesItem({dataC, hnd}) {
   return (
     <div  className='w-full relative min-h-[230px] bg-[#ACACAC] text-white rounded-xl'>
-        <div onClick={()=> window.open("/personals/ds", "_current")} className='absolute top-4 left-4 flex flex-col font-semibold text-[12px] leading-4'>
+        <div onClick={()=> window.open("/personals/ds", "_current")} className='absolute cursor-pointer top-4 left-4 flex flex-col font-semibold text-[12px] leading-4'>
             <p className='font-mulish font-semibold'>{dataC.name}, {dataC.age} лет</p>
             <p className='font-mulish font-semibold'>{dataC.country}, {dataC.city}</p>
             <p className='font-mulish font-semibold'>№{dataC.idC}</p>

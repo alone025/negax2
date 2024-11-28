@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
 import Footer from "../components/Footer";
 
+import fmImg from "../img/female-avatar.png"
+import mlIMg from "../img/male-avatar.png"
+
+
 const Personals = () => {
 
   const navigate = useNavigate();
@@ -16,49 +20,49 @@ const Personals = () => {
       age: 20,
       location: "Казахстан, Астана",
       id: 8836,
-      avatar: "../img/female-avatar.png",
+      avatar: fmImg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png",
+      avatar: mlIMg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png",
+      avatar: mlIMg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png",
+      avatar: mlIMg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png",
+      avatar: mlIMg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png",
+      avatar: mlIMg,
     },
     {
       name: "Ахмад",
       age: 25,
       location: "Казахстан, Алматы",
       id: 8742,
-      avatar: "../img/male-avatar.png", 
+      avatar: mlIMg, 
     },
     
   ];
@@ -76,7 +80,7 @@ const Personals = () => {
 
 
   return (
-    <div className="bg-gray-50 min-h-screen p-6 flex flex-col items-center">
+    <div className="bg-gray-50 min-h-screen pb-[70px] p-6 flex flex-col items-center">
       {/* Header */}
       <header className="absolute container top-5 flex justify-between items-center w-full">
         <div onClick={handleSeting} className="cursor-pointer">
