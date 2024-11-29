@@ -2,6 +2,8 @@ import { useState } from "react";
 import { GoChevronLeft, GoHeart } from "react-icons/go";
 import Footer from "../components/Footer";
 
+import { IoClose } from "react-icons/io5";
+
 const LikesH = () => {
   const [profiles, setProfiles] = useState(
     Array(10)
@@ -85,12 +87,20 @@ const LikesH = () => {
                 {profile.name}, {profile.age}
               </div>
             </div>
+            <div className="bt-btn flex flex-row gap-2">
             <button
-              onClick={() => handleChange(profile.id)}
+              
               className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
             >
               <GoHeart />
             </button>
+            <button
+              onClick={() => handleChange(profile.id)}
+              className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
+            >
+              <IoClose />
+            </button>
+            </div>
           </div>
         ))}
       </div>

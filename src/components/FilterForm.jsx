@@ -34,7 +34,15 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
     setFilterActive(false)
     hnd()
     
-}
+    setStartValue(18)
+    setEndValue(65)
+    setgen2('')
+    setCity2('')
+    setCountry2('')
+    setSearchName2('')
+    setNational2('')
+    setSearchIDC2('')
+  }
 
   return (
     <div className="relative text-black">
