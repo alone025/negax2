@@ -150,7 +150,7 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
                 Национальность
               </label>
               <select onChange={(e)=> setNational2(e.target.value)} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
-                <option>Укажите национальность</option>
+                <option value={''}>Укажите национальность</option>
                 <option value={'Kazax'}>Казах</option>
                 <option value={'Uzbek'}>Узбек</option>
               </select>
