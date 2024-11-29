@@ -13,6 +13,7 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
   const [national, setNational2] = useState("");
    const [searchName , setSearchName2] = useState('')
    const [searchIDC , setSearchIDC2] = useState('')
+   const [fmI , setFMI] = useState('')
 
 
 
@@ -41,6 +42,7 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
     setCountry2('')
     setSearchName2('')
     setNational2('')
+    setFMI('')
     setSearchIDC2('')
   }
 
@@ -157,7 +159,7 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
                 Национальность
               </label>
-              <select onChange={(e)=> setNational2(e.target.value)} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
+              <select onChange={(e)=> setNational2(e.target.value)} value={national} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
                 <option value={''}>Укажите национальность</option>
                 <option value={'Kazax'}>Казах</option>
                 <option value={'Uzbek'}>Узбек</option>
@@ -167,7 +169,7 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
                 Семейное положение
               </label>
-              <select className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
+              <select onChange={(e)=> setFMI(e.target.value)} value={fmI} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
                 <option>Заполните поле</option>
                 <option>Разведен(а)</option>
                 <option>Не замужем/Не женат</option>

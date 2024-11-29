@@ -12,6 +12,8 @@ const Market = () => {
   };
 
 const [active , setActive] = useState('0')
+const [buy, setBuy] = useState(false);
+
 
   return (
     <div className="container flex pb-[55px] flex-col items-center pt-[68px]">
@@ -37,6 +39,44 @@ const [active , setActive] = useState('0')
       )}
         </div>
       </header>
+
+      {buy && (
+        <div
+          onClick={() => setBuy(false)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
+
+
+      {buy && (
+        <dialog
+          id="modal"
+          className="fixed text-center max-w-[350px] lg:max-w-[380px] w-full z-50 p-2 flex flex-col rounded top-1/2"
+        >
+          <p className="text-base lg:text-2xl font-mulish font-normal">
+          Оплата
+          </p>
+          <p className="font-mulish mt-1 font-normal text-sm lg:text-base">
+          Чтобы купить этот товар:
+            <br />
+            -Оплатите через Каспий 7000 тг на номер
+            <br />
+            <span >+7-771-422-10-50</span> - Кулпарам К.
+            <br />
+            <a href="https://api.whatsapp.com/send?phone=77051669055&text=https://neke.site/market/detail/1" className="hover:underline font-semibold">- Отправить чек товара администратору</a> .
+            <br />
+          </p>
+          <div className="btngroup justify-center flex flex-row gap-2">
+            <button
+              id="closeModal"
+              onClick={()=> setBuy(false)}
+              className="border max-w-[300px] w-full mt-3 border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded"
+            >
+              Отмена
+            </button>
+          </div>
+        </dialog>
+      )}
 
       {dote && (
         <div
@@ -90,7 +130,7 @@ const [active , setActive] = useState('0')
         <button onClick={()=> window.open("/market/asd", "_current")} className="border border-solid border-[#6A59A7] py-2 rounded px-6 text-[#6A59A7] font-mulish font-normal text-base">
           Подробнее
         </button>
-        <button className="bg-[#6A59A7] py-2 rounded px-8 text-white font-mulish font-normal text-base">
+        <button  onClick={() => setBuy(true)} className="bg-[#6A59A7] py-2 rounded px-8 text-white font-mulish font-normal text-base">
           Купить
         </button>
       </div>
