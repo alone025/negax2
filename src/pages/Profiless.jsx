@@ -4,9 +4,15 @@ import SettingForm from "../components/SettingForm";
 import EditProfile from "../components/EditProfile";
 import logo from "../img/logo.png";
 import setting from "../img/setting.png";
+import { useNavigate } from "react-router-dom";
 
 const Profiless = () => {
+
+  const navigate = useNavigate();
+
   const [isMenuOpen2, setIsMenuOpen2] = useState(false);
+  const [exit, setExit] = useState(false);
+  const [deleteAk, setDeleteAk] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [user, setUser] = useState({
     name: "Алексей",
@@ -43,6 +49,13 @@ const Profiless = () => {
     setUser(updatedUser); 
     setIsEditing(false); 
   };
+
+
+  const handleDelete = () => {
+    localStorage.removeItem("logined")
+    navigate('/login')
+  }
+
 
   if (isEditing) {
     return (
@@ -85,6 +98,46 @@ const Profiless = () => {
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
         />
       )}
+
+{deleteAk && (
+        <div
+          onClick={()=> setDeleteAk((prev)=> !prev)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
+
+      
+      {
+        deleteAk && (
+          <dialog id="modal" className="fixed max-w-[300px] w-full z-50 p-2 flex flex-col rounded top-1/2">
+          <p className="text-base lg:text-lg font-mulish font-normal">Вы уверены, что хотите удалить учетную запись?</p>
+         <div className="btngroup flex flex-row mt-3 gap-2">
+         <button id="closeModal" className="border border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded" onClick={()=> setDeleteAk((prev)=> !prev)}>Отмена</button>
+         <button id="closeModal" className="bg-[#634F9E] border border-[#634F9E] font-mulish p-1 text-white text-xs lg:text-base rounded" onClick={()=> {setDeleteAk((prev)=> !prev); handleDelete()}}>Да</button>
+         </div>  
+         </dialog>
+        )
+      }
+
+{exit && (
+        <div
+        onClick={()=> setExit((prev)=> !prev)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        />
+      )}
+
+
+{exit && (
+       <dialog id="modal" className="fixed max-w-[300px] w-full z-50 p-2 flex flex-col rounded top-1/2">
+       <p className="text-base lg:text-lg font-mulish font-normal">Вы уверены, что хотите выйти?</p>
+      <div className="btngroup flex flex-row mt-3 gap-2">
+      <button id="closeModal" className="border border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded" onClick={()=> setExit((prev)=> !prev)}>Отмена</button>
+      <button id="closeModal" className="bg-[#634F9E] border border-[#634F9E] font-mulish p-1 text-white text-xs lg:text-base rounded" onClick={()=> {setExit((prev)=> !prev); handleDelete()}}>Да</button>
+      </div>  
+      </dialog>
+      )}
+
+
 
       <div className="mt-6">
         <h1 className="text-2xl font-mulish font-medium text-[#131313]">
@@ -138,10 +191,10 @@ const Profiless = () => {
       <button onClick={() => setIsEditing(true)} className="w-full bg-white text-[#6A59A7] shadow py-3 rounded-lg font-poppins font-semibold hover:bg-gray-100">
             Редактировать профиль
           </button>
-          <button className="w-full bg-[#6A59A7] text-white py-3 font-poppins rounded-lg font-semibold ">
+          <button onClick={()=> setExit((prev)=> !prev)} className="w-full bg-[#6A59A7] text-white py-3 font-poppins rounded-lg font-semibold ">
             Выйти из учетной записи
           </button>
-          <button className="w-full bg-[#6A59A7] text-white py-3 rounded-lg font-poppins font-semibold">
+          <button onClick={()=> setDeleteAk((prev)=> !prev)} className="w-full bg-[#6A59A7] text-white py-3 rounded-lg font-poppins font-semibold">
             Удалить учетную запись
           </button>
       </div>

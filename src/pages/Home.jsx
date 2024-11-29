@@ -19,84 +19,122 @@ import SettingForm from "../components/SettingForm";
 const initialData = [
   {
     id: 1,
-    name: "Алексей Иванов",
+    name: "Алексей Иванов Kazax",
     age: 35,
     maritalStatus: "Женат",
     country: "Россия",
     city: "Москва",
     children: 2,
+    idC:'8881',
+    gender: 'male',
+    national: 'Kazax',
   },
   {
     id: 2,
-    name: "Мария Петрова",
+    name: "Мария Петрова Uzbek",
     age: 28,
     maritalStatus: "Не замужем",
     country: "Россия",
     city: "Санкт-Петербург",
     children: 0,
+    idC:'8876',
+    gender: 'female',
+    national: 'Uzbek',
+
   },
   {
     id: 3,
-    name: "Ольга Смирнова",
+    name: "Ольга Смирнова Uzbek",
     age: 42,
     maritalStatus: "Разведен(а)",
     country: "Казахстан",
     city: "Алматы",
     children: 1,
+    idC:'8875',
+    national: 'Uzbek',
+    gender: 'female',
+
   },
   {
     id: 4,
-    name: "Дмитрий Васильев",
+    name: "Дмитрий Васильев Kazax",
     age: 30,
     maritalStatus: "Холост",
     country: "Беларусь",
     city: "Минск",
     children: 0,
+    idC:'8871',
+    national: 'Kazax',
+    gender: 'male',
+
   },
   {
     id: 5,
-    name: "Екатерина Соколова",
+    name: "Екатерина Соколова Uzbek",
     age: 25,
     maritalStatus: "Замужем",
     country: "Украина",
     city: "Киев",
     children: 1,
+    idC:'8872',
+    gender: 'female',
+    national: 'Uzbek',
+
+
   },
   {
     id: 6,
-    name: "Иван Кузнецов",
+    name: "Иван Кузнецов Kazax",
     age: 40,
     maritalStatus: "Женат",
     country: "Россия",
     city: "Новосибирск",
     children: 3,
+    idC:'8874',
+    gender: 'male',
+    national: 'Kazax',
+
+
   },
   {
     id: 7,
-    name: "Анастасия Павлова",
+    name: "Анастасия Павлова Uzbek",
     age: 34,
     maritalStatus: "Вдовец/Вдова",
     country: "Казахстан",
     city: "Нур-Султан",
     children: 2,
+    idC:'8873',
+    gender: 'female',
+    national: 'Uzbek',
+
+
   },
   {
     id: 8,
-    name: "Сергей Михайлов",
+    name: "Сергей Михайлов Kazax",
     age: 27,
     maritalStatus: "Холост",
     country: "Россия",
     city: "Екатеринбург",
     children: 0,
+    idC:'8877',
+    gender: 'male',
+    national: 'Kazax',
+
   },
   {
     id: 9,
-    name: "Наталья Зайцева",
+    name: "Наталья Зайцева Uzbek",
     age: 45,
     maritalStatus: "Разведен(а)",
     country: "Беларусь",
     city: "Гомель",
     children: 2,
+    idC:'8885',
+    gender: 'female',
+    national: 'Uzbek',
+
   },
 ];
 
@@ -106,14 +144,30 @@ const Home = () => {
 
   const [data, setData] = useState(initialData); 
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [filterActive, setFilterActive] = useState(false)
   const [dote, setDote] = useState(false)
+
+
+  // Filter useStates
+
+  const [gender, setGender] = useState("");
+  const [ageRange, setAgeRange] = useState([18, 50]);
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [national, setNational] = useState("");
+  const [searchName , setSearchName] = useState('')
+  const [searchIDC , setSearchIDC] = useState('')
+
+
+  // End of it
 
   const toggleDropdown = () => {
     setDote(!dote);
   };
 
   const [doteModal, setDoteModal] = useState(false);
+  
+
 
 
   const toogleModal = () => {
@@ -132,16 +186,25 @@ const Home = () => {
 
   useEffect(() => {
     randomizeUser();
-  }, []);
+  }, [ageRange]);
 
 
   const randomizeUser = () => {
+  if(!filterActive){  
     if (data.length > 0) {
-      const randomIndex = Math.floor(Math.random() * data.length);
-      setCurrentUser(data[randomIndex]);
-    } else {
-      setCurrentUser(null);
+    const randomIndex = Math.floor(Math.random() * data.length);
+    setCurrentUser(data[randomIndex]);
+  } else {
+    setCurrentUser(null);
+  }}else{
+    const newD = applyFilters()
+      console.log(newD)
+    if (newD.length > 0 && data.length > 0) {
+      
+      const randomIndex = Math.floor(Math.random() * newD.length);
+    setCurrentUser(newD[randomIndex]);
     }
+  }
   };
 
   const unlikeUser = () => {
@@ -151,6 +214,36 @@ const Home = () => {
       randomizeUser()
     }
   };
+
+
+  // Filter
+  const applyFilters = () => {
+    return initialData.filter((person) => {
+      if(searchName  && !person.name.toLowerCase().includes(searchName.trim().toLowerCase())){
+        return false
+      }
+      if(searchIDC  && !person.idC.includes(searchIDC.trim())){
+        return false
+      }
+      if (gender && ((gender === "boy" && person.gender !== "male") || (gender === "girl" && person.gender !== "female"))) {
+        return false;
+      }
+      if(national && person.national.toLowerCase() !== national.toLowerCase()){
+        return false
+      }
+      if (person.age < ageRange[0] || person.age > ageRange[1]) {
+        return false;
+      }
+      if (city && person.city.toLowerCase() !== city.toLowerCase()) {
+        return false;
+      }
+      if (country && person.country.toLowerCase() !== country.toLowerCase()) {
+        return false;
+      }
+      return true;
+    });
+  };
+  // Filter end
 
 
   function handleLikes() {
@@ -203,8 +296,9 @@ const Home = () => {
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
-        <FilterForm hnd={handleSeting} />
+        <FilterForm  randomizeUser={randomizeUser} setFilterActive={setFilterActive} setSearchName={setSearchName} setSearchIDC={setSearchIDC} setNational={setNational} setGender={setGender} setAgeRange={setAgeRange} setCity={setCity} setCountry={setCountry} hnd={handleSeting} />
       </div>
+
 
       <div
         className={`fixed cursor-pointer rounded-l-[30px] top-0 h-full w-[270px] bg-white shadow-lg transform ${

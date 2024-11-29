@@ -2,11 +2,39 @@ import { useState } from "react";
 import seting from "../img/filter.svg";
 import RangeSlider from "./RangeSlider";
 
-const FilterForm = ({ hnd }) => {
+const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNational, setGender, setAgeRange, setCity, setCountry }) => {
  
-  const [gen, setgen] = useState("");
+  const [startValue, setStartValue] = useState(18);
+  const [endValue, setEndValue] = useState(65);
+
+  const [gen, setgen2] = useState("");
+  const [city, setCity2] = useState("");
+  const [country, setCountry2] = useState("");
+  const [national, setNational2] = useState("");
+   const [searchName , setSearchName2] = useState('')
+   const [searchIDC , setSearchIDC2] = useState('')
 
 
+
+
+
+  const handleConfirm = () => {
+      setFilterActive(true)
+      setSearchName(searchName)
+      setSearchIDC(searchIDC)
+      setAgeRange([startValue, endValue])
+      setGender(gen)
+      setCity(city)
+      setCountry(country)
+      setNational(national)
+      hnd() 
+  }
+
+  const handleOtmen = () => {
+    setFilterActive(false)
+    hnd()
+    
+}
 
   return (
     <div className="relative text-black">
@@ -17,12 +45,12 @@ const FilterForm = ({ hnd }) => {
           </button>
 
           <div className="mt-4 space-y-4">
-            <RangeSlider />
+            <RangeSlider startValue={startValue} endValue={endValue} setStartValue={setStartValue} setEndValue={setEndValue} />
             <div>
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Пол</label>
               <div className="flex items-center gap-3 mt-2">
                 <button
-                  onClick={() => setgen("boy")}
+                  onClick={() => setgen2("boy")}
                   className={`flex-1 p-2 border rounded border-solid font-mulish font-medium flex flex-row items-center gap-2 ${
                     gen === "boy"
                       ? "border-[#634F9E]  text-[#634F9E]"
@@ -59,7 +87,7 @@ const FilterForm = ({ hnd }) => {
                   Мужской
                 </button>
                 <button
-                  onClick={() => setgen("girl")}
+                  onClick={() => setgen2("girl")}
                   className={`flex-1 p-2 border rounded border-solid font-mulish font-medium flex flex-row items-center gap-2 ${
                     gen === "girl"
                       ? "border-[#634F9E]  text-[#634F9E]"
@@ -101,6 +129,8 @@ const FilterForm = ({ hnd }) => {
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Страна</label>
               <input
                 type="text"
+                onChange={(e)=> setCountry2(e.target.value)}
+                value={country}
                 placeholder="Казахстан"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
               />
@@ -108,6 +138,8 @@ const FilterForm = ({ hnd }) => {
             <div>
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Город</label>
               <input
+              onChange={(e)=> setCity2(e.target.value)}
+              value={city}
                 type="text"
                 placeholder="Астана"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
@@ -117,10 +149,10 @@ const FilterForm = ({ hnd }) => {
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
                 Национальность
               </label>
-              <select className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
+              <select onChange={(e)=> setNational2(e.target.value)} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
                 <option>Укажите национальность</option>
-                <option>Казах</option>
-                <option>Узбек</option>
+                <option value={'Kazax'}>Казах</option>
+                <option value={'Uzbek'}>Узбек</option>
               </select>
             </div>
             <div>
@@ -137,6 +169,8 @@ const FilterForm = ({ hnd }) => {
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Поиск по слову</label>
               <input
                 type="text"
+                onChange={(e)=> setSearchName2(e.target.value)}
+                value={searchName}
                 placeholder="Заполни поле"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
               />
@@ -146,6 +180,8 @@ const FilterForm = ({ hnd }) => {
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Поиск по номеру анкеты</label>
               <input
                 type="text"
+                onChange={(e)=> setSearchIDC2(e.target.value)}
+                value={searchIDC}
                 placeholder="Заполни поле"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
               />
@@ -172,10 +208,10 @@ const FilterForm = ({ hnd }) => {
 
             </div>
             <div>
-              <button className="w-full mt-4 p-2 py-3 bg-[#634F9E] font-poppins font-bold text-white rounded">
+              <button onClick={handleConfirm} className="w-full mt-4 p-2 py-3 bg-[#634F9E] font-poppins font-bold text-white rounded">
                 Продолжить
               </button>
-              <button className="font-poppins font-bold rounded p-2 py-3 w-full shadow mt-2 text-[#ACACAC] text-[14px]">Сбросить фильтры</button>
+              <button onClick={handleOtmen} className="font-poppins font-bold rounded p-2 py-3 w-full shadow mt-2 text-[#ACACAC] text-[14px]">Сбросить фильтры</button>
             </div>
           </div>
         </div>

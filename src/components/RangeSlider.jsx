@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
-const RangeSlider = () => {
+const RangeSlider = ({setStartValue, startValue, endValue, setEndValue}) => {
   const minValue = 18;
   const maxValue = 65;
 
-  const [startValue, setStartValue] = useState(18);
-  const [endValue, setEndValue] = useState(65);
+  // const [startValue, setStartValue] = useState(18);
+  // const [endValue, setEndValue] = useState(65);
 
   const rangeRef = useRef(null);
 

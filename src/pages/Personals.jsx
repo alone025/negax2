@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import seting from "../img/filter.svg";
 import question from "../img/question.svg";
 import logo from "../img/logo2.png";
@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
 import Footer from "../components/Footer";
 
-import fmImg from "../img/female-avatar.png"
-import mlIMg from "../img/male-avatar.png"
+import mlIMg from "../img/female-avatar.png"
+import fmImg from "../img/male-avatar.png"
 
 
 const Personals = () => {
@@ -16,56 +16,206 @@ const Personals = () => {
 
   const profiles = [
     {
-      name: "Катя",
-      age: 20,
-      location: "Казахстан, Астана",
-      id: 8836,
+      id: 1,
+      name: "Алексей Иванов Kazax",
+      age: 35,
+      maritalStatus: "Женат",
+      country: "Россия",
+      city: "Москва",
+      children: 2,
+      idC:'8881',
+      gender: 'male',
+      national: 'Kazax',
+      avatar: mlIMg,
+    },
+    {
+      id: 2,
+      name: "Мария Петрова Uzbek",
+      age: 28,
+      maritalStatus: "Не замужем",
+      country: "Россия",
+      city: "Санкт-Петербург",
+      children: 0,
+      idC:'8876',
+      gender: 'female',
+      national: 'Uzbek',
       avatar: fmImg,
+  
     },
     {
-      name: "Ахмад",
-      age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
+      id: 3,
+      name: "Ольга Смирнова Uzbek",
+      age: 42,
+      maritalStatus: "Разведен(а)",
+      country: "Казахстан",
+      city: "Алматы",
+      children: 1,
+      idC:'8875',
+      national: 'Uzbek',
+      gender: 'female',
+      avatar: fmImg,
+  
+    },
+    {
+      id: 4,
+      name: "Дмитрий Васильев Kazax",
+      age: 30,
+      maritalStatus: "Холост",
+      country: "Беларусь",
+      city: "Минск",
+      children: 0,
+      idC:'8871',
+      national: 'Kazax',
+      gender: 'male',
       avatar: mlIMg,
+  
     },
     {
-      name: "Ахмад",
+      id: 5,
+      name: "Екатерина Соколова Uzbek",
       age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
+      maritalStatus: "Замужем",
+      country: "Украина",
+      city: "Киев",
+      children: 1,
+      idC:'8872',
+      gender: 'female',
+      national: 'Uzbek',
+      avatar: fmImg,
+      
+  
+    },
+    {
+      id: 6,
+      name: "Иван Кузнецов Kazax",
+      age: 40,
+      maritalStatus: "Женат",
+      country: "Россия",
+      city: "Новосибирск",
+      children: 3,
+      idC:'8874',
+      gender: 'male',
+      national: 'Kazax',
       avatar: mlIMg,
+  
+  
     },
     {
-      name: "Ахмад",
-      age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
+      id: 7,
+      name: "Анастасия Павлова Uzbek",
+      age: 34,
+      maritalStatus: "Вдовец/Вдова",
+      country: "Казахстан",
+      city: "Нур-Султан",
+      children: 2,
+      idC:'8873',
+      gender: 'female',
+      national: 'Uzbek',
+  
+      avatar: fmImg,
+  
+    },
+    {
+      id: 8,
+      name: "Сергей Михайлов Kazax",
+      age: 27,
+      maritalStatus: "Холост",
+      country: "Россия",
+      city: "Екатеринбург",
+      children: 0,
+      idC:'8877',
+      gender: 'male',
       avatar: mlIMg,
+      national: 'Kazax',
+  
     },
     {
-      name: "Ахмад",
-      age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
-      avatar: mlIMg,
-    },
-    {
-      name: "Ахмад",
-      age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
-      avatar: mlIMg,
-    },
-    {
-      name: "Ахмад",
-      age: 25,
-      location: "Казахстан, Алматы",
-      id: 8742,
-      avatar: mlIMg, 
+      id: 9,
+      name: "Наталья Зайцева Uzbek",
+      age: 45,
+      maritalStatus: "Разведен(а)",
+      country: "Беларусь",
+      city: "Гомель",
+      children: 2,
+      idC:'8885',
+      gender: 'female',
+      national: 'Uzbek',
+      avatar: fmImg,
+  
     },
     
   ];
+
+  const [data, setData ] = useState(profiles)
+  const [filterActive, setFilterActive] = useState(false)
+
+
+    // Filter useStates
+
+    const [gender, setGender] = useState("");
+    const [ageRange, setAgeRange] = useState([18, 50]);
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [national, setNational] = useState("");
+    const [searchName , setSearchName] = useState('')
+    const [searchIDC , setSearchIDC] = useState('')
+  
+  
+    // End of it
+
+
+    useEffect(()=> {
+      random()
+    },[filterActive, gender, ageRange, city, country, national, searchName, searchIDC])
+
+
+
+  // Filter
+  const applyFilters = () => {
+    return profiles.filter((person) => {
+      if(searchName  && !person.name.toLowerCase().includes(searchName.trim().toLowerCase())){
+        return false
+      }
+      if(searchIDC  && !person.idC.includes(searchIDC.trim())){
+        return false
+      }
+      if (gender && ((gender === "boy" && person.gender !== "male") || (gender === "girl" && person.gender !== "female"))) {
+        return false;
+      }
+      if(national && person.national.toLowerCase() !== national.toLowerCase()){
+        return false
+      }
+      if (person.age < ageRange[0] || person.age > ageRange[1]) {
+        return false;
+      }
+      if (city && person.city.toLowerCase() !== city.toLowerCase()) {
+        return false;
+      }
+      if (country && person.country.toLowerCase() !== country.toLowerCase()) {
+        return false;
+      }
+      return true;
+    });
+  };
+  // Filter end
+
+  const random = () => {
+   
+     if(filterActive){
+      const newData = applyFilters()
+      console.log(newData);
+      if(newData.length > 0){
+        setData(newData)
+      
+     }else{
+      setData(null)
+    
+     }
+     }else{
+      setData(profiles)
+     }
+      
+    }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -106,7 +256,7 @@ const Personals = () => {
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50`}
       >
-        <FilterForm hnd={handleSeting} />
+        <FilterForm setFilterActive={setFilterActive} setSearchName={setSearchName} setSearchIDC={setSearchIDC} setNational={setNational} setGender={setGender} setAgeRange={setAgeRange} setCity={setCity} setCountry={setCountry} hnd={handleSeting} />
       </div>
 
       {/* Overlay */}
@@ -122,7 +272,7 @@ const Personals = () => {
 
       {/* Profiles Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {profiles.map((profile, index) => (
+        {data.map((profile, index) => (
           <div
             key={index}
             className="bg-rgb flex flex-col justify-between text-white p-4 rounded-xl shadow-lg"
@@ -133,7 +283,7 @@ const Personals = () => {
               {profile.name}, {profile.age} лет
             </h2>
             <p className="text-start font-mulish font-semibold text-sm sm:text-base">{profile.location}</p>
-            <p className="text-start font-mulish font-bold text-sm sm:text-base">№{profile.id}</p>
+            <p className="text-start font-mulish font-bold text-sm sm:text-base">№{profile.idC}</p>
            </div>
             <img
               src={profile.avatar}
