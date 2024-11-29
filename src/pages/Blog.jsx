@@ -92,7 +92,7 @@ const CardOtziv = ({img}) => {
             <p className="text-sm font-monsetrat font-normal">«У двух любящих сердец, наилучший итог - это
             брак. قلب</p>
             <div className="btm-cont mt-4 flex flex-row justify-between">
-            <p onClick={()=> window.open("/blog/asd", "_current")} className="rgb-text text-xs font-normal font-mulish">читать далее</p>
+            <p onClick={()=> window.open("/blog/asd", "_current")} className="rgb-text cursor-pointer text-xs font-normal font-mulish">читать далее</p>
             <div className="tm flex flex-row gap-1">
                 <p className="rgb-text text-sm font-normal font-mulish">26.02.24</p>
                 <img src={time} alt="" />

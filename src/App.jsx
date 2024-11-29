@@ -24,6 +24,7 @@ import EmailLogin from './pages/EmailLogin';
 import EmailLogInto from './pages/EmailLogInto';
 import BlogDetail from './pages/BlogPage';
 import MarketDetail from './pages/MarketPage';
+import CommentPage from './pages/CommentPage';
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/question' element={<Question/>}></Route>
         <Route path='/comments' element={<Comments/>}></Route>
+        <Route path='/comments/:id' element={<CommentPage/>}></Route>
+
         <Route path='/blog' element={<Blog/>}></Route>
         <Route path='/blog/:id' element={<BlogDetail/>}></Route>
 
