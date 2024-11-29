@@ -16,7 +16,7 @@ const [buy, setBuy] = useState(false);
 
 
   return (
-    <div className="container flex pb-[55px] flex-col items-center pt-[68px]">
+    <div className="container relative flex pb-[55px] flex-col items-center pt-[68px]">
       <header className="absolute container top-5 flex justify-between items-center w-full">
         <div className="flex items-center gap-3">
           <img className="w-[40px]  " src={logo} alt="" />

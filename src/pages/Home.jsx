@@ -159,6 +159,10 @@ const Home = () => {
   const [searchIDC , setSearchIDC] = useState('')
 
 
+  const [inputT, setInputT] = useState('');
+
+
+
   // End of it
 
   const toggleDropdown = () => {
@@ -337,10 +341,10 @@ const Home = () => {
 {
  doteModal &&  <dialog id="modal" className="fixed max-w-[300px] w-full z-50 p-2 flex flex-col rounded top-1/2">
  <p className="text-base lg:text-lg font-mulish font-normal">Причина вашей жалобы.</p>
- <input type="text" placeholder="Причина...." className="my-2 border border-[#634F9E] rounded outline-none p-2 font-mulish " />
+ <input onChange={(e)=>setInputT(e.target.value)} value={inputT} type="text" placeholder="Причина...." className="my-2 border border-[#634F9E] rounded outline-none p-2 font-mulish " />
 <div className="btngroup flex flex-row gap-2">
-<button id="closeModal" className="border border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded" onClick={toogleModal}>Отмена</button>
-<button id="closeModal" className="bg-[#634F9E] border border-[#634F9E] font-mulish p-1 text-white text-xs lg:text-base rounded" onClick={toogleModal}>Отправка</button>
+<button  id="closeModal" className="border border-[#634F9E] font-mulish p-1 text-[#634F9E] text-xs lg:text-base rounded" onClick={toogleModal}>Отмена</button>
+<button disabled={inputT.length < 5 ? true : false} id="closeModal" className="bg-[#634F9E] disabled:opacity-40 border border-[#634F9E] font-mulish p-1 text-white text-xs lg:text-base rounded" onClick={toogleModal}>Отправка</button>
 </div>  
 </dialog>
 }
