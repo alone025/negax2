@@ -208,7 +208,7 @@ const Personals = () => {
         setData(newData)
       
      }else{
-      setData(null)
+      setData([])
     
      }
      }else{
@@ -296,6 +296,10 @@ const Personals = () => {
           </div>
         ))}
       </div>
+
+      {data.length === 0 && (
+        <p className="text-base font-mulish font-normal lg:text-lg text-center">Для этого фильтра нет данных.</p>
+      )}
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 w-full bg-white shadow-md flex justify-around py-2">
