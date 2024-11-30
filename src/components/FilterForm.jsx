@@ -2,8 +2,85 @@ import { useState } from "react";
 import seting from "../img/filter.svg";
 import RangeSlider from "./RangeSlider";
 
-const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNational, setGender, setAgeRange, setCity, setCountry }) => {
+const countries = [
+  {
+    cn: "Узбекистан",
+    vl: "Узбекистан",
+  },
+  {
+    cn: "Таджикистан",
+    vl: "Таджикистан",
+  },
+  {
+    cn: "Киргизия",
+    vl: "Киргизия",
+  },
+  {
+    cn: "Казахстан",
+    vl: "Казахстан",
+  },
+  {
+    cn: "Туркменистан",
+    vl: "Туркменистан",
+  },
+  {
+    cn: "Россия",
+    vl: "Россия",
+  },
+];
+
+const citysBy = {
+  'Узбекистан': ['Ташкент', 'Самарканд', 'Бухара', 'Хива', 'Андижан'],
+  'Таджикистан': ['Душанбе', 'Худжанд', 'Куляб', 'Бохтар', 'Истаравшан'],
+  'Киргизия': ['Бишкек', 'Ош', 'Джалал-Абад', 'Каракол', 'Нарын'],
+  'Казахстан': ['Астана', 'Алматы', 'Шымкент', 'Актобе', 'Караганда'],
+  'Туркменистан': ['Ашхабад', 'Туркменабат', 'Мары', 'Дашогуз', 'Балканабат'],
+  "Россия": [
+  "Москва",
+  'Санкт-Петербург',
+  'Новосибирск',
+  'Екатеринбург',
+  'Казань',
+  'Нижний Новгород',
+  'Челябинск',
+  'Самара',
+  'Омск',
+  'Ростов-на-Дону'
+  ]
+ }
+
+const citys = [
+  { city: 'Tashkent'}, { city: 'Samarkand'}, { city: 'Bukhara'}, { city: 'Khiva'}, { city: 'Andijan'},
+ { city: 'Dushanbe'}, { city: 'Khujand'}, { city: 'Kulob'}, { city: 'Bokhtar'}, { city: 'Istaravshan'},
+ { city: 'Bishkek'}, { city: 'Osh'}, { city: 'Jalal-Abad'}, { city: 'Karakol'}, { city: 'Naryn'},
+ { city: 'Astana'}, { city: 'Almaty'}, { city: 'Shymkent'}, { city: 'Aktobe'}, { city: 'Karaganda'},
+  { city: 'Ashgabat'}, { city: 'Turkmenabat'}, { city: 'Mary'}, { city: 'Dashoguz'}, { city: 'Balkanabat'},
  
+    { city: 'Moscow'},
+    { city: 'Saint Petersburg'},
+    { city: 'Novosibirsk'},
+    { city: 'Yekaterinburg'},
+    { city: 'Kazan'},
+    { city: 'Nizhny Novgorod'},
+    { city: 'Chelyabinsk'},
+    { city: 'Samara'},
+    { city: 'Omsk'},
+    { city: 'Rostov-on-Don'}
+  
+]
+
+
+const FilterForm = ({
+  hnd,
+  setFilterActive,
+  setSearchName,
+  setSearchIDC,
+  setNational,
+  setGender,
+  setAgeRange,
+  setCity,
+  setCountry,
+}) => {
   const [startValue, setStartValue] = useState(18);
   const [endValue, setEndValue] = useState(65);
 
@@ -11,40 +88,36 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
   const [city, setCity2] = useState("");
   const [country, setCountry2] = useState("");
   const [national, setNational2] = useState("");
-   const [searchName , setSearchName2] = useState('')
-   const [searchIDC , setSearchIDC2] = useState('')
-   const [fmI , setFMI] = useState('')
-
-
-
-
+  const [searchName, setSearchName2] = useState("");
+  const [searchIDC, setSearchIDC2] = useState("");
+  const [fmI, setFMI] = useState("");
 
   const handleConfirm = () => {
-      setFilterActive(true)
-      setSearchName(searchName)
-      setSearchIDC(searchIDC)
-      setAgeRange([startValue, endValue])
-      setGender(gen)
-      setCity(city)
-      setCountry(country)
-      setNational(national)
-      hnd() 
-  }
+    setFilterActive(true);
+    setSearchName(searchName);
+    setSearchIDC(searchIDC);
+    setAgeRange([startValue, endValue]);
+    setGender(gen);
+    setCity(city);
+    setCountry(country);
+    setNational(national);
+    hnd();
+  };
 
   const handleOtmen = () => {
-    setFilterActive(false)
-    hnd()
-    
-    setStartValue(18)
-    setEndValue(65)
-    setgen2('')
-    setCity2('')
-    setCountry2('')
-    setSearchName2('')
-    setNational2('')
-    setFMI('')
-    setSearchIDC2('')
-  }
+    setFilterActive(false);
+    hnd();
+
+    setStartValue(18);
+    setEndValue(65);
+    setgen2("");
+    setCity2("");
+    setCountry2("");
+    setSearchName2("");
+    setNational2("");
+    setFMI("");
+    setSearchIDC2("");
+  };
 
   return (
     <div className="relative text-black">
@@ -55,9 +128,16 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
           </button>
 
           <div className="mt-4 space-y-4">
-            <RangeSlider startValue={startValue} endValue={endValue} setStartValue={setStartValue} setEndValue={setEndValue} />
+            <RangeSlider
+              startValue={startValue}
+              endValue={endValue}
+              setStartValue={setStartValue}
+              setEndValue={setEndValue}
+            />
             <div>
-              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Пол</label>
+              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
+                Пол
+              </label>
               <div className="flex items-center gap-3 mt-2">
                 <button
                   onClick={() => setgen2("boy")}
@@ -136,50 +216,90 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
               </div>
             </div>
             <div>
-              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Страна</label>
-              <input
+              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
+                Страна
+              </label>
+              {/* <input
                 type="text"
                 onChange={(e)=> setCountry2(e.target.value)}
                 value={country}
                 placeholder="Казахстан"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
-              />
+              /> */}
+              <select
+                onChange={(e) => setCountry2(e.target.value)}
+                value={country}
+                className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
+              >
+                <option value={""}>Укажите страна</option>
+                {countries.map((c, ckey) => (
+                  <option value={c.vl} key={ckey}>
+                    {c.cn}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
-              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Город</label>
-              <input
-              onChange={(e)=> setCity2(e.target.value)}
-              value={city}
+              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
+                Город
+              </label>
+              {/* <input
+                onChange={(e) => setCity2(e.target.value)}
+                value={city}
                 type="text"
                 placeholder="Астана"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
-              />
+              /> */}
+              <select
+                onChange={(e) => setCity2(e.target.value)}
+                value={city}
+                className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
+              >
+                <option value={""}>Укажите город</option>
+                {country && citysBy[country].map((cityD, cityKey)=>(
+                <option key={cityKey} value={cityD}>{cityD}</option>
+                ))}
+
+{!country && citys.map((cityD, cityKey)=>(
+                <option key={cityKey} value={cityD.city}>{cityD.city}</option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
                 Национальность
               </label>
-              <select onChange={(e)=> setNational2(e.target.value)} value={national} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
-                <option value={''}>Укажите национальность</option>
-                <option value={'Kazax'}>Казах</option>
-                <option value={'Uzbek'}>Узбек</option>
+              <select
+                onChange={(e) => setNational2(e.target.value)}
+                value={national}
+                className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
+              >
+                <option value={""}>Укажите национальность</option>
+                <option value={"Kazax"}>Казах</option>
+                <option value={"Uzbek"}>Узбек</option>
               </select>
             </div>
             <div>
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
                 Семейное положение
               </label>
-              <select onChange={(e)=> setFMI(e.target.value)} value={fmI} className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]">
+              <select
+                onChange={(e) => setFMI(e.target.value)}
+                value={fmI}
+                className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
+              >
                 <option>Заполните поле</option>
                 <option>Разведен(а)</option>
                 <option>Не замужем/Не женат</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Поиск по слову</label>
+              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
+                Поиск по слову
+              </label>
               <input
                 type="text"
-                onChange={(e)=> setSearchName2(e.target.value)}
+                onChange={(e) => setSearchName2(e.target.value)}
                 value={searchName}
                 placeholder="Заполни поле"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
@@ -187,10 +307,12 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
             </div>
 
             <div>
-              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">Поиск по номеру анкеты</label>
+              <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
+                Поиск по номеру анкеты
+              </label>
               <input
                 type="text"
-                onChange={(e)=> setSearchIDC2(e.target.value)}
+                onChange={(e) => setSearchIDC2(e.target.value)}
                 value={searchIDC}
                 placeholder="Заполни поле"
                 className="w-full mt-2 p-2 border border-solid border-[#ACACAC] font-mulish font-normal placeholder:text-[#5E5E5E] rounded outline-none focus:border-[#634F9E]"
@@ -201,34 +323,51 @@ const FilterForm = ({ hnd, setFilterActive, setSearchName, setSearchIDC, setNati
                 Только покрытые
               </label>
               <label className="switch relative inline-block w-[50px] h-[24px]">
-  <input id="slider-checkInput" type="checkbox" className="opacity-0 w-0 h-0"/>
-  <span id="slider-check" className="slider round absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[#ccc] transition-all"></span>
-</label>
-
+                <input
+                  id="slider-checkInput"
+                  type="checkbox"
+                  className="opacity-0 w-0 h-0"
+                />
+                <span
+                  id="slider-check"
+                  className="slider round absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[#ccc] transition-all"
+                ></span>
+              </label>
             </div>
 
             <div className="flex flex-row items-center justify-between gap-1">
               <label className="block text-sm text-[#5E5E5E] font-mulish font-medium">
-              Только с наличием фото
+                Только с наличием фото
               </label>
               <label className="switch relative inline-block w-[50px] h-[24px]">
-  <input id="slider-checkInput" type="checkbox" className="opacity-0 w-0 h-0"/>
-  <span id="slider-check" className="slider round absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[#ccc] transition-all"></span>
-</label>
-
+                <input
+                  id="slider-checkInput"
+                  type="checkbox"
+                  className="opacity-0 w-0 h-0"
+                />
+                <span
+                  id="slider-check"
+                  className="slider round absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[#ccc] transition-all"
+                ></span>
+              </label>
             </div>
             <div>
-              <button onClick={handleConfirm} className="w-full mt-4 p-2 py-3 bg-[#634F9E] font-poppins font-bold text-white rounded">
+              <button
+                onClick={handleConfirm}
+                className="w-full mt-4 p-2 py-3 bg-[#634F9E] font-poppins font-bold text-white rounded"
+              >
                 Продолжить
               </button>
-              <button onClick={handleOtmen} className="font-poppins font-bold rounded p-2 py-3 w-full shadow mt-2 text-[#ACACAC] text-[14px]">Сбросить фильтры</button>
+              <button
+                onClick={handleOtmen}
+                className="font-poppins font-bold rounded p-2 py-3 w-full shadow mt-2 text-[#ACACAC] text-[14px]"
+              >
+                Сбросить фильтры
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-
-
     </div>
   );
 };

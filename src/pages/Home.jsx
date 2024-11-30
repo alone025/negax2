@@ -15,6 +15,10 @@ import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
 import SettingForm from "../components/SettingForm";
 
+import ml from "../img/female-avatar.png"
+import fm from "../img/male-avatar.png"
+
+
 
 const initialData = [
   {
@@ -374,7 +378,9 @@ const Home = () => {
         </div>
       </main>
       <section className="border shadow h-[450px] w-full container p-0 rounded-xl">
-        <div className="h-[75%] w-full relative bg-[#D9D9D9] rounded-t-xl">
+        <div className="h-[75%] flex justify-center w-full relative bg-[#D9D9D9] rounded-t-xl">
+
+          <img src={currentUser?.gender === "male" ? ml : currentUser?.gender === "female" ? fm : ml} alt="" className="h-full" />
           {/*  */}
           <img onClick={toggleDropdown} src={dot} alt="" className="absolute cursor-pointer top-7 right-7" />
           {/*  */}

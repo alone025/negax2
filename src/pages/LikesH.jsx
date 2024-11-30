@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GoChevronLeft, GoHeart } from "react-icons/go";
 import Footer from "../components/Footer";
-
 import { IoClose } from "react-icons/io5";
 
 const LikesH = () => {
@@ -12,11 +11,8 @@ const LikesH = () => {
   );
 
   const [searchTerm, setSearchTerm] = useState("");
-
-  const handleChange = (id) => {
-    const filteredProfiles = profiles.filter((profile) => profile.id !== id);
-    setProfiles(filteredProfiles);
-  };
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProfileId, setSelectedProfileId] = useState(null);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -29,6 +25,22 @@ const LikesH = () => {
       profile.name.toLowerCase().includes(normalizedSearchTerm.toLowerCase()) ||
       profile.age.toString().includes(normalizedSearchTerm)
   );
+
+  const handleDeleteClick = (id) => {
+    setSelectedProfileId(id);
+    setModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setModalVisible(false);
+    setSelectedProfileId(null);
+  };
+
+  const handleConfirm = () => {
+    setProfiles(profiles.filter((profile) => profile.id !== selectedProfileId));
+    setModalVisible(false);
+    setSelectedProfileId(null);
+  };
 
   return (
     <div className="min-h-screen pb-[50px] container pt-2">
@@ -73,9 +85,9 @@ const LikesH = () => {
 
       {/* Profile List */}
       <div className="px-4">
-        {filteredProfiles.map((profile, index) => (
+        {filteredProfiles.map((profile) => (
           <div
-            key={index}
+            key={profile.id}
             className="flex items-center justify-between py-3 border-b border-gray-200"
           >
             <div className="flex items-center">
@@ -88,22 +100,47 @@ const LikesH = () => {
               </div>
             </div>
             <div className="bt-btn flex flex-row gap-2">
-            <button
-              
-              className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
-            >
-              <GoHeart />
-            </button>
-            <button
-              onClick={() => handleChange(profile.id)}
-              className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
-            >
-              <IoClose />
-            </button>
+              <button
+                className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
+              >
+                <GoHeart />
+              </button>
+              <button
+                onClick={() => handleDeleteClick(profile.id)}
+                className="w-10 h-10 rounded-full text-white font-extrabold bg-rgb flex items-center justify-center shadow"
+              >
+                <IoClose />
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      
+      {modalVisible && (
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <p className="text-gray-700 font-mulish font-medium mb-4">
+              Вы уверены, что хотите удалить?
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={handleCancel}
+                className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+              >
+                Отмена
+              </button>
+              <button
+                onClick={handleConfirm}
+                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              >
+                Подтвердить
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
