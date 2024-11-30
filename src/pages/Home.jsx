@@ -278,9 +278,9 @@ const Home = () => {
   }
 
   return (
-    <div className="flex pb-12 flex-col items-center pt-16 px-4 min-h-screen relative">
+    <div className="flex flex-col items-center min-h-screen relative">
     
-      <header className="absolute container top-5 flex justify-between items-center w-full">
+      <header className="absolute top-0 container flex justify-between items-center w-full h-16 bg-white z-40">
         <div onClick={handleSeting} className="cursor-pointer">
           <img src={seting} alt="Settings" />
         </div>
@@ -355,16 +355,16 @@ const Home = () => {
 
 
       {/* main */}
-      <main className="container p-5 flex justify-between items-center">
+      <main className="container pt-20 p-5 flex justify-between items-center">
         <div
           onClick={handleShopping}
-          className="cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center"
+          className="cursor-pointer w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center"
         >
           <img src={shopcheck} alt="" />
         </div>
         <div
           onClick={handleLikes}
-          className="cursor-pointer relative w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center"
+          className="cursor-pointer relative w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center"
         >
           <img src={love} alt="" />
           <span className="absolute bg-rgb -top-1 w-7 h-7 p-[1px] shadow rounded-full -right-3">
@@ -373,16 +373,20 @@ const Home = () => {
            </div>
           </span>
         </div>
-        <div onClick={handleSetting2} className="w-[65px] h-[65px] cursor-pointer rounded-full shadow border flex items-center justify-center">
+        <div onClick={handleSetting2} className="w-[50px] md:w-[60px] h-[50px] md:h-[60px] cursor-pointer rounded-full shadow border flex items-center justify-center">
           <img src={setting} alt="" />
         </div>
       </main>
-      <section className="border shadow h-[450px] w-full container p-0 rounded-xl">
-        <div className="h-[75%] flex justify-center w-full relative bg-[#D9D9D9] rounded-t-xl">
+
+<div className="sc flex pb-10 flex-col flex-grow w-full">
+  {/* User card */}
+
+  <section className="border shadow h-cls lg:h-[320px] w-full container p-0 rounded-xl">
+        <div className="h-[56%] lg:h-[67%] flex justify-center w-full relative bg-[#D9D9D9] rounded-t-xl">
 
           <img src={currentUser?.gender === "male" ? ml : currentUser?.gender === "female" ? fm : ml} alt="" className="h-full" />
           {/*  */}
-          <img onClick={toggleDropdown} src={dot} alt="" className="absolute cursor-pointer top-7 right-7" />
+          <img onClick={toggleDropdown} src={dot} alt="" className="absolute cursor-pointer h-[25px] md:h-auto top-7 right-7" />
           {/*  */}
           {dote && (
         <div className="absolute z-50 cursor-pointer right-0 top-16 w-fit bg-white rounded-md shadow-lg">
@@ -394,7 +398,7 @@ const Home = () => {
       )}
           
           {/*  */}
-          <div className="absolute w-fit bottom-7 left-7 gap-2 flex flex-col">
+          <div className="absolute w-fit bottom-3 lg:bottom-7 left-7 gap-2 flex flex-col">
             <p className="font-mulish font-medium w-fit text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
             <div className="flex gap-2 w-fit">
               <img src={location} alt="" className="w-5" />
@@ -414,17 +418,25 @@ const Home = () => {
           </p>
         </div>
       </section>
+
+      {/* User card end */}
+
+      {/* User card under buttons */}
       <section className="container p-5 flex justify-between items-center">
-        <div onClick={randomizeUser} className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={randomizeUser} className="w-[50px] md:w-[60px] cursor-pointer h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">
           <img src={group1} alt="" />
         </div>
-        <div onClick={unlikeUser} className=" relative cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={unlikeUser} className="relative cursor-pointer w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">
           <img src={xxx} alt="" />
         </div>
-        <div onClick={randomizeUser} className="w-[65px] cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={randomizeUser} className="w-[50px] md:w-[60px] cursor-pointer h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">
           <img src={vector} alt="" />
         </div>
       </section>
+
+      {/* User card under buttons end*/}
+</div>
+
       <Footer />
     </div>
   );

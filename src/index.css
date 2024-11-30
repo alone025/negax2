@@ -104,3 +104,11 @@ input#slider-checkInput:checked + .slider:before {
 #slider-check.round:before {
   border-radius: 50%;
 }
+
+
+
+@media screen and (max-width:768px){
+  .h-cls{
+    height: calc(100vh - 303px);
+  }
+}
