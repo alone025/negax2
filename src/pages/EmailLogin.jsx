@@ -46,6 +46,11 @@ const EmailLogin = () => {
  
     const emailTrue = isValidEmail(email)  
 
+    const usernameValid = /^[a-zA-Z]+$/.test(username);
+    const passwordValid = password.length >= 8 && password.length <= 16;
+    const phoneValid = /^[+]\d{10,16}$/.test(phone);
+
+
       
     setErrors("");
 
@@ -56,22 +61,23 @@ const EmailLogin = () => {
     }
     else if(!username){
          setErrors("Заполните логин!");
-    }else if (!phone) {
-         setErrors("Заполните номер телефона!");
-    }else if (!password){
-         setErrors("Введите пароль!");
-    }else if (password !== confirmPassword){
-         setErrors("Пароли не совпадают!");
-    }else if (!termsAccepted){
-         setErrors("Согласитесь с правилами!");
-        setCheckboxError(true);
+    } else if (!usernameValid) {
+      setErrors("Логин должен содержать только английские буквы!");
+    } else if (!phone) {
+      setErrors("Заполните номер телефона!");
+    } else if (!phoneValid) {
+      setErrors("Номер телефона должен начинаться с + и содержать от 10 до 16 цифр!");
+    } else if (!password) {
+      setErrors("Введите пароль!");
+    } else if (!passwordValid) {
+      setErrors("Пароль должен быть от 8 до 16 символов!");
+    } else if (password !== confirmPassword) {
+      setErrors("Пароли не совпадают!");
+    } else if (!termsAccepted) {
+      setErrors("Согласитесь с правилами!");
+      setCheckboxError(true);
       setTimeout(() => setCheckboxError(false), 1000);
-    }
-
-
-   
-
-    if (errors == "") {
+    } else {
       console.log("Form submitted successfully");
       navigate('/registerverification')
     }
@@ -222,7 +228,7 @@ const EmailLogin = () => {
           </Link>
         </div>
 
-        <div className="mt-7 text-xs font-light text-[#000000] font-poppins">
+        <div className="mt-7 pb-3 text-xs font-light text-[#000000] font-poppins">
           <label className="flex items-start gap-2">
           <div className={`bgh h-[15px] p-[1px] rounded-[3px] ${checkboxError ? 'bg-red-600' : ''}`}>
           <input

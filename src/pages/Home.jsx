@@ -382,7 +382,7 @@ const Home = () => {
   {/* User card */}
 
   <section className="border shadow h-cls lg:h-[320px] w-full container p-0 rounded-xl">
-        <div className="h-[56%] lg:h-[67%] flex justify-center w-full relative bg-rgb rounded-t-xl">
+        <div onClick={()=> window.open('/personals/ds', "_current")} className="h-[56%] cursor-pointer lg:h-[67%] flex justify-center w-full relative bg-rgb rounded-t-xl">
 
           <img src={currentUser?.gender === "male" ? ml : currentUser?.gender === "female" ? fm : ml} alt="" className="h-full" />
           {/*  */}

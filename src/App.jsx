@@ -25,6 +25,8 @@ import EmailLogInto from './pages/EmailLogInto';
 import BlogDetail from './pages/BlogPage';
 import MarketDetail from './pages/MarketPage';
 import CommentPage from './pages/CommentPage';
+import RegisterStateLogin from './pages/NumberLogin';
+import RegisterVerificationLogin from './pages/RegistrationLogin';
 
 
 function App() {
@@ -53,8 +55,10 @@ function App() {
         <Route path='/loginto-wemail' element={<EmailLogInto/>}/>
         <Route path="/register" element={<Register />} />
         <Route path='/registerstate' element={<RegisterState/>}></Route>
+        <Route path='/registerstateLogin' element={<RegisterStateLogin/>}></Route>
         
         <Route path='/registerverification' element={<RegisterVerification/>}></Route>
+        <Route path='/registerverificationLogin' element={<RegisterVerificationLogin/>}></Route>
         <Route path='/surveyform' element={<SurveyForm/>}></Route>
         <Route path='/personalform' element={<PersonalForm/>}></Route>
         <Route path='/religiyaform' element={<ReligiyaForm/>}></Route>

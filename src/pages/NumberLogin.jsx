@@ -4,14 +4,11 @@ import logo from "../img/logo2.png";
 import { HiChevronLeft } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const RegisterState = () => {
+const RegisterStateLogin = () => {
   const [countryCode, setCountryCode] = useState("+62");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [maxLength, setMaxLength] = useState(15);
   const [errors, setErrors] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const [checkboxError, setCheckboxError] = useState(false);
-
   const navigate = useNavigate();
 
   const handleCountryCodeChange = (e) => {
@@ -55,12 +52,8 @@ const RegisterState = () => {
       setErrors("Заполните номер телефона!");
     } else if (!validatePhoneNumber()) {
       setErrors("Номер телефона неверный или не соответствует выбранному коду страны!");
-    } else if (!termsAccepted) {
-      setErrors("Согласитесь с правилами!");
-      setCheckboxError(true);
-      setTimeout(() => setCheckboxError(false), 1000);
     } else {
-      navigate("/registerverification");
+      navigate("/registerverificationLogin");
     }
   };
 
@@ -88,9 +81,9 @@ const RegisterState = () => {
           </h1>
         </div>
       </header>
-      <div className="bg-white rounded-lg p-6 w-wull">
+      <div className="bg-white rounded-lg p-6 w-full">
         <div className="mb-4">
-          <button onClick={() => window.open("/register", "_current")} className="text-gray-600 flex items-center">
+          <button onClick={() => window.open("/login", "_current")} className="text-gray-600 flex items-center">
             <span className="mr-2 text-[#ACACAC]">
               <HiChevronLeft />
             </span>
@@ -142,26 +135,10 @@ const RegisterState = () => {
           Продолжить
         </button>
         {errors !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{errors}</p>}
-        <div className="mt-6 text-xs font-light text-[#000000] font-poppins">
-          <label className="flex gap-2 items-start">
-            <div className={`bgh h-[15px] p-[1px] rounded-[3px] ${checkboxError ? "bg-red-600" : ""}`}>
-              <input
-                type="checkbox"
-                onChange={() => setTermsAccepted(!termsAccepted)}
-                checked={termsAccepted}
-                id="terms"
-                className={`cursor-pointer accent-[#6A59A7] rounded focus:ring-purple-500`}
-              />
-            </div>
-            <span className="font-poppins">
-              Для регистрации вам должно быть не менее 18 лет. Регистрируясь, вы соглашаетесь с Лицензионным соглашением
-              NIKAH.SPACE, Политикой приватности и Правилами оплаты.
-            </span>
-          </label>
-        </div>
+       
       </div>
     </div>
   );
 };
 
-export default RegisterState;
+export default RegisterStateLogin;

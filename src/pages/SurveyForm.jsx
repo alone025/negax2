@@ -1,6 +1,78 @@
 import { useState } from "react";
 import logo from "../img/logo2.png";
 import { useNavigate } from "react-router-dom";
+
+
+
+const countries = [
+  {
+    cn: "Узбекистан",
+    vl: "Узбекистан",
+  },
+  {
+    cn: "Таджикистан", 
+    vl: "Таджикистан",
+  },
+  {
+    cn: "Киргизия", 
+    vl: "Киргизия",
+  },
+  {
+    cn: "Казахстан",
+    vl: "Казахстан",
+  },
+  {
+    cn: "Туркменистан",
+    vl: "Туркменистан",
+  },
+  {
+    cn: "Россия",
+    vl: "Россия",
+  },
+];
+
+const citysBy = {
+  'Узбекистан': ['Ташкент', 'Самарканд', 'Бухара', 'Хива', 'Андижан'],
+  'Таджикистан': ['Душанбе', 'Худжанд', 'Куляб', 'Бохтар', 'Истаравшан'],
+  'Киргизия': ['Бишкек', 'Ош', 'Джалал-Абад', 'Каракол', 'Нарын'],
+  'Казахстан': ['Астана', 'Алматы', 'Шымкент', 'Актобе', 'Караганда'],
+  'Туркменистан': ['Ашхабад', 'Туркменабат', 'Мары', 'Дашогуз', 'Балканабат'],
+  "Россия": [
+  "Москва",
+  'Санкт-Петербург',
+  'Новосибирск',
+  'Екатеринбург',
+  'Казань',
+  'Нижний Новгород',
+  'Челябинск',
+  'Самара',
+  'Омск',
+  'Ростов-на-Дону'
+  ]
+ }
+
+const citys = [
+  { city: 'Tashkent'}, { city: 'Samarkand'}, { city: 'Bukhara'}, { city: 'Khiva'}, { city: 'Andijan'},
+ { city: 'Dushanbe'}, { city: 'Khujand'}, { city: 'Kulob'}, { city: 'Bokhtar'}, { city: 'Istaravshan'},
+ { city: 'Bishkek'}, { city: 'Osh'}, { city: 'Jalal-Abad'}, { city: 'Karakol'}, { city: 'Naryn'},
+ { city: 'Astana'}, { city: 'Almaty'}, { city: 'Shymkent'}, { city: 'Aktobe'}, { city: 'Karaganda'},
+  { city: 'Ashgabat'}, { city: 'Turkmenabat'}, { city: 'Mary'}, { city: 'Dashoguz'}, { city: 'Balkanabat'},
+ 
+    { city: 'Moscow'},
+    { city: 'Saint Petersburg'},
+    { city: 'Novosibirsk'},
+    { city: 'Yekaterinburg'},
+    { city: 'Kazan'},
+    { city: 'Nizhny Novgorod'},
+    { city: 'Chelyabinsk'},
+    { city: 'Samara'},
+    { city: 'Omsk'},
+    { city: 'Rostov-on-Don'}
+  
+]
+
+
+
 const SurveyForm = () => {
   const [gender, setGender] = useState("");
   const [name, setName] = useState("");
@@ -195,20 +267,35 @@ else{
           <select onChange={(e)=> setCountry(e.target.value)}
           value={country} className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Страна</option>
-            <option value="Uzbekistan">Узбекистан</option>
-            <option value="Kazakhstan">Казахстан</option>
+            {countries.map((c, ckey)=> (
+             <option key={ckey} value={c.vl}>{c.cn}</option>
+              
+            ))}
+            
           </select>
           <select onChange={(e)=> setCity(e.target.value)}
           value={city} className="w-full font-mulish outline-none mb-3 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Город</option>
-            <option value="Tashkent">Ташкент</option>
-            <option value="Almaty">Алматы</option>
+            
+                <option value={""}>Укажите город</option>
+                {country !== "" && citysBy[country].map((cityD, cityKey)=>(
+                <option key={cityKey} value={cityD}>{cityD}</option>
+                ))}
+
+{country == "" && citys.map((cityD, cityKey)=>(
+                <option key={cityKey} value={cityD.city}>{cityD.city}</option>
+                ))}
+           
+          
           </select>
           <select onChange={(e)=> setNational(e.target.value)}
           value={national} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Национальность</option>
-            <option value="Uzbek">Узбек</option>
-            <option value="Kazakh">Казах</option>
+            <option value={"Kazax"}>Казах</option>
+                <option value={"Uzbek"}>Узбек</option>
+                <option value={"Tadjik"}>Тажик</option>
+                <option value={"Turkmen"}>Туркмен</option>
+                <option value={"Qirgiz"}>Киргиз</option>
           </select>
         </div>
 

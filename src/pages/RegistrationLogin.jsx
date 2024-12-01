@@ -3,12 +3,10 @@ import logo from "../img/logo2.png"
 import { HiChevronLeft } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const RegisterVerification = () => {
+const RegisterVerificationLogin = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const [indexOtp , setIndex] = useState(0);
   const navigate = useNavigate();
 
-  const [timeouts, setTimeouts] = useState({});
   const initialTime = 5*60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
 
@@ -17,7 +15,7 @@ const RegisterVerification = () => {
     e.preventDefault()
    
     if(otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== ''){
-    navigate("/surveyform")
+    navigate("/")
     }
   }
 
@@ -27,13 +25,8 @@ const RegisterVerification = () => {
     newOtp[index] = value.slice(0, 1);
     setOtp(newOtp);
 
-    
-
     if (value && index < 3) {
-      setTimeout(() => {
-        document.getElementById(`otp-input-${index + 1}`).focus();
-      }, 180);
-      
+      document.getElementById(`otp-input-${index + 1}`).focus();
     }
   };
 
@@ -70,30 +63,6 @@ const RegisterVerification = () => {
   }, [timeLeft]);
 
 
-  const handleFocus = (index) => {
-    setIndex(index+1);
-
-    // Clear any existing timeout for this input
-    if (timeouts[index]) {
-      clearTimeout(timeouts[index]);
-    }
-  };
-
-  // Handle input blur (when the input loses focus)
-  const handleBlur = (index) => {
-    // Set a timeout to hide the input value after 3 seconds
-    const timeoutId = setTimeout(() => {
-      setIndex(null); // Hide value after 3 seconds
-    }, 3000); // 3 seconds delay
-
-    // Store the timeout ID to clear it if focus comes back before 3 seconds
-    setTimeouts((prevTimeouts) => ({
-      ...prevTimeouts,
-      [index]: timeoutId,
-    }));
-  };
-
-
   return (
     <div className="flex flex-col items-center pt-16 px-4 min-h-screen   relative">
     <header className="absolute container top-5 flex justify-between items-center w-full">
@@ -115,11 +84,9 @@ const RegisterVerification = () => {
               key={index}
               id={`otp-input-${index}`}
               type="text"
-              onFocus={() => handleFocus(index)} 
-          onBlur={() => handleBlur(index)}
               maxLength="1"
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
-              value={indexOtp === index + 1 ? digit : `●`}
+              value={digit}
               onChange={(e) => handleChange(e.target.value.replace(/[^0-9]/g, ""), index)}
             />
           ))}
@@ -146,4 +113,4 @@ const RegisterVerification = () => {
   );
 };
 
-export default RegisterVerification;
+export default RegisterVerificationLogin;

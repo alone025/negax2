@@ -1,9 +1,31 @@
 import { HiOutlineX } from "react-icons/hi";
 import ml from "../img/female-avatar.png"
 import fm from "../img/male-avatar.png"
+import { useState } from "react";
 
 
 function LikesItem({ dataC, hnd }) {
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProfileId, setSelectedProfileId] = useState(null);
+
+
+  const handleDeleteClick = (id) => {
+    setSelectedProfileId(id);
+    setModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setModalVisible(false);
+    setSelectedProfileId(null);
+  };
+
+  const handleConfirm = () => {
+    hnd(selectedProfileId);
+    setModalVisible(false);
+    setSelectedProfileId(null);
+  };
+
   return (
     <div className="w-full relative min-h-[230px] bg-rgb text-white rounded-xl">
       <div
@@ -18,11 +40,11 @@ function LikesItem({ dataC, hnd }) {
         </p>
         <p className="font-mulish font-semibold">№{dataC.idC}</p>
       </div>
-
+ 
         <img onClick={() => window.open("/personals/ds", "_current")} src={dataC.age % 2 === 0 ? ml : fm} alt="ml" className="pt-16" />
 
       <div
-        onClick={() => hnd(dataC.id)}
+                        onClick={() => handleDeleteClick(dataC.id)}
         className="absolute cursor-pointer bg-white text-gray-400 left-[10%] w-10 h-10 rounded-full flex justify-center items-center text-3xl bottom-6"
       >
         <HiOutlineX />
@@ -42,6 +64,33 @@ function LikesItem({ dataC, hnd }) {
           />
         </svg>
       </div>
+
+      
+
+      {modalVisible && (
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <p className="text-gray-700 font-mulish font-medium mb-4">
+              Вы уверены, что хотите удалить?
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={handleCancel}
+                className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+              >
+                Отмена
+              </button>
+              <button
+                onClick={handleConfirm}
+                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              >
+                Подтвердить
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

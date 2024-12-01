@@ -62,10 +62,32 @@ const PersonalForm = () => {
     navigate("/surveyform");
   }
 
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    
+    
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+  
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      return age - 1;
+    }
+    return age;
+  };
+
+
   function handlePersonalForm(e) {
     e.preventDefault();
     setError("")
+
+    const newAge = calculateAge(year)
+    
+    
+
     if (!year) setError("Требуется возраст!");
+    else if (newAge < 18 || newAge >= 50) setError('Вам нет 18 лет!');
     else if (!height) setError("Требуется рост!");
     else if (!weight) setError("Требуется вес!");
     else if (!character) setError("Требуется персонаж!");
@@ -134,20 +156,36 @@ const PersonalForm = () => {
             О вас
           </h3>
           <div className="space-y-3">
-            <input type="date" onChange={(e)=> handleChange('year', e.target.value)} value={year} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"/>
+            <input min={'2006-01-01'} maxLength={5} type="date" onChange={(e)=> handleChange('year', e.target.value)} value={year} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"/>
               {/* <option value="">Возраст</option>
               <option value="18-25">18-25</option>
               <option value="26-35">26-35</option>
             </input> */}
+
             <select onChange={(e)=> handleChange('height', e.target.value)} value={height} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Рост</option>
-              <option value="160-170">160-170</option>
-              <option value="170-180">170-180</option>
+              <option value="90-100">90-100</option>
+              <option value="101-110">101-110</option>
+              <option value="111-120">111-120</option>
+              <option value="121-130">121-130</option>
+
+              <option value="131-140">131-140</option>
+
+              <option value="141-150">141-150</option>
+
+              <option value="151-160">151-160</option>
+              <option value="161-170">161-170</option>
+              <option value="171-180">171-180</option>
+              <option value="181-190">181-190</option>
+              <option value="191-200">191-200</option>
+
             </select>
             <select onChange={(e)=> handleChange('weight', e.target.value)} value={weight} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Вес</option>
               <option value="60-70">60-70</option>
               <option value="70-80">70-80</option>
+              <option value="80-90">80-90</option>
+              <option value="90-100">90-100</option>
             </select>
             <select onChange={(e)=> handleChange('character', e.target.value)} value={character} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Ваш характер</option>

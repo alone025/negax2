@@ -86,7 +86,7 @@ const Profiless = () => {
 
       <div
         className={`fixed cursor-pointer rounded-l-[30px] top-0 h-full w-[270px] bg-white shadow-lg transform ${
-          isMenuOpen2 ? "right-0" : "-translate-x-full left-0"
+          isMenuOpen2 ? "right-0" : "translate-x-full right-0"
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <SettingForm />

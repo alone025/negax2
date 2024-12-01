@@ -32,11 +32,12 @@ const [about, setAbout] = useState("");
     else if (!tg) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
     else if (!fc) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
     else if (!future) setError("Напишите о своей будущей супруге!");
+    else if (future.length < 50) setError('Напишите не менее 50 слов о своем будущем супруге!');
     else if (!about) setError("Напишите о себе!");
+    else if (about.length < 30) setError("Напишите о себе не менее 50 слов!!");
+
     else navigate("/fotopage")
   }
-
-
 
 
     return (

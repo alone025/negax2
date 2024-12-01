@@ -35,7 +35,7 @@ const Login = () => {
                 <p className="text-sm leading-4 text-center text-[#6A59A7] font-pro-monument font-normal">САЙТ ЗНАКОМСТВ ДЛЯ МУСУЛЬМАН</p>
               </div>
               <div className="w-full gap-3 flex flex-col text-white">
-                <button onClick={()=> window.open('/registerstate', "_current")} className="w-full rounded-md flex cursor-pointer items-center justify-center gap-4 py-2 bg-[#634F9E]">
+                <button onClick={()=> window.open('/registerstateLogin', "_current")} className="w-full rounded-md flex cursor-pointer items-center justify-center gap-4 py-2 bg-[#634F9E]">
                 <MdPhoneIphone className="text-[28px]" /><p className="font-poppins font-semibold text-sm md:text-lg">Войти по номеру телефона</p>
                 </button>
                 <button className="hover:bg-[#634F9E] hover:text-white duration-300 w-full rounded-md flex  cursor-pointer items-center justify-center gap-4 py-2 shadow-md text-[#634F9E]">
