@@ -1,7 +1,7 @@
 import  { useState, useRef } from "react";
 import checkSvg from "../img/check.svg"
 
-const Slider = () => {
+const Slider = ({setBuy, setBuy2}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
 
@@ -87,7 +87,7 @@ const Slider = () => {
                
             </div>
           </div>
-          <button className="bg-[#6A59A7] text-white w-full py-3 rounded-b-xl font-mulish text-sm font-bold mt-4">
+          <button onClick={()=> slide.id === 1 ? setBuy(true) : setBuy2(true)} className="bg-[#6A59A7] text-white w-full py-3 rounded-b-xl font-mulish text-sm font-bold mt-4">
           Оплатить 15000₸
           </button>
         </div>

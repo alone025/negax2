@@ -277,6 +277,9 @@ const FilterForm = ({
                 <option value={""}>Укажите национальность</option>
                 <option value={"Kazax"}>Казах</option>
                 <option value={"Uzbek"}>Узбек</option>
+                <option value={"Tadjik"}>Тажик</option>
+                <option value={"Turkmen"}>Туркмен</option>
+                <option value={"Qirgiz"}>Киргиз</option>
               </select>
             </div>
             <div>

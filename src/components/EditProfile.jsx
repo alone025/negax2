@@ -45,7 +45,9 @@ const EditProfile = ({ user, onSave, onCancel }) => {
           <input
             type="number"
             value={editedUser.age}
-            onChange={(e) => handleInputChange("age", Number(e.target.value))}
+            max={50}
+            min={18}
+            onChange={(e) => handleInputChange("age", Number(e.target.value.length > 2 ? editedUser.age :  e.target.value))}
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -76,7 +78,8 @@ const EditProfile = ({ user, onSave, onCancel }) => {
               type="number"
               value={editedUser.height}
               max={200}
-              onChange={(e) => handleInputChange("height", Number(e.target.value))}
+              min={110}
+              onChange={(e) => handleInputChange("height", Number(e.target.value.length > 3 ? editedUser.height :  e.target.value))}
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
@@ -86,7 +89,8 @@ const EditProfile = ({ user, onSave, onCancel }) => {
               type="number"
               value={editedUser.weight}
               max={100}
-              onChange={(e) => handleInputChange("weight", Number(e.target.value))}
+              min={50}
+              onChange={(e) => handleInputChange("weight", Number(e.target.value.length > 3 ? editedUser.weight :  e.target.value))}
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>

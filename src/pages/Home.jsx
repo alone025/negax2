@@ -310,7 +310,7 @@ const Home = () => {
 
       <div
         className={`fixed cursor-pointer rounded-l-[30px] top-0 h-full w-[270px] bg-white shadow-lg transform ${
-          isMenuOpen2 ? "right-0" : "-translate-x-full left-0"
+          isMenuOpen2 ? "right-0" : "translate-x-full right-0"
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <SettingForm />
@@ -382,7 +382,7 @@ const Home = () => {
   {/* User card */}
 
   <section className="border shadow h-cls lg:h-[320px] w-full container p-0 rounded-xl">
-        <div className="h-[56%] lg:h-[67%] flex justify-center w-full relative bg-[#D9D9D9] rounded-t-xl">
+        <div className="h-[56%] lg:h-[67%] flex justify-center w-full relative bg-rgb rounded-t-xl">
 
           <img src={currentUser?.gender === "male" ? ml : currentUser?.gender === "female" ? fm : ml} alt="" className="h-full" />
           {/*  */}
@@ -399,10 +399,10 @@ const Home = () => {
           
           {/*  */}
           <div className="absolute w-fit bottom-3 lg:bottom-7 left-7 gap-2 flex flex-col">
-            <p className="font-mulish font-medium w-fit text-[#5E5E5E] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
+            <p className="font-mulish font-medium w-fit text-[#fff] text-xl">{currentUser?.name || 'Алексей'}, {currentUser?.age || '38'}</p>
             <div className="flex gap-2 w-fit">
               <img src={location} alt="" className="w-5" />
-              <span className="font-mulish w-fit text-sm text-[#000000] font-normal">{currentUser?.city || 'Шымкент'}, {currentUser?.country || 'Казахстан'}</span>
+              <span className="font-mulish w-fit text-sm text-[#ffffff] font-normal">{currentUser?.city || 'Шымкент'}, {currentUser?.country || 'Казахстан'}</span>
             </div>
           </div>
         </div>

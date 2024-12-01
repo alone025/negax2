@@ -7,7 +7,7 @@ const VipPage = () => {
   const [buy2, setBuy2] = useState(false);
 
   return (
-    <div className="min-h-screen pt-9">
+    <div className="min-h-screen pb-11 lg:pb-0 pt-9">
       <header className="flex items-center py-4 bg-white">
         <h1 className="text-2xl leading-9 font-mulish font-medium text-[#5E5E5E]">
           Платные пакеты
@@ -162,7 +162,7 @@ const VipPage = () => {
       </div>
 
       <div className=" md:hidden">
-        <Slider />
+        <Slider setBuy={setBuy} setBuy2={setBuy2} />
       </div>
     </div>
   );
