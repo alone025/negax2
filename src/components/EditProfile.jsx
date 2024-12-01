@@ -43,11 +43,11 @@ const EditProfile = ({ user, onSave, onCancel }) => {
         <div>
           <label className="block text-gray-700">Возраст</label>
           <input
-            type="number"
+            type="text"
             value={editedUser.age}
             max={50}
             min={18}
-            onChange={(e) => handleInputChange("age", Number(e.target.value.length > 2 ? editedUser.age :  e.target.value))}
+            onChange={(e) => handleInputChange("age", Number(e.target.value.length > 2 ? editedUser.age :  e.target.value.replace(/[^0-9]/g, "")))}
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
@@ -127,11 +127,26 @@ const EditProfile = ({ user, onSave, onCancel }) => {
         <div>
           <label className="block text-gray-700">Количество детей</label>
           <input
-            type="number"
+            type="text"
+            min={0}
+            max={10}
             value={editedUser.childrenCount}
-            onChange={(e) =>
-              handleInputChange("childrenCount", Number(e.target.value))
-            }
+            // onChange={(e) =>
+            //   handleInputChange("childrenCount", Number(e.target.value.length > 2 ? editedUser.childrenCount : e.target.value.replace(/[^0-9]/g, "")))
+            // }
+
+            onChange={(e) => {
+              let newValue = e.target.value.replace(/[^0-9]/g, "");
+        
+              if (newValue.length > 2) {
+                newValue = newValue.slice(-2); 
+              }
+              if (Number(newValue) > 10) {
+                newValue = newValue.slice(1); 
+              }
+        
+              handleInputChange("childrenCount", newValue); 
+            }}
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>

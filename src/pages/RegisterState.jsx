@@ -123,7 +123,7 @@ const RegisterState = () => {
               placeholder={`${countryCode} 812 0101 0101`}
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              maxLength={maxLength}
+              maxLength={countryCode === "+62" ? 11 : countryCode === "+1" ? 12 : countryCode === "+91" ? 13 : 11}
             />
             <span className="absolute right-3 top-2/4 transform -translate-y-2/4 text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">
