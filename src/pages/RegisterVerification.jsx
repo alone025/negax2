@@ -8,7 +8,7 @@ const RegisterVerification = () => {
   const [indexOtp , setIndex] = useState(0);
   const navigate = useNavigate();
 
-  const [timeouts, setTimeouts] = useState({});
+  
   const initialTime = 5*60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
 
@@ -74,21 +74,13 @@ const RegisterVerification = () => {
     setIndex(index+1);
 
    
-    if (timeouts[index]) {
-      clearTimeout(timeouts[index]);
-    }
+   
   };
 
-  const handleBlur = (index) => {
-    const timeoutId = setTimeout(() => {
+  const handleBlur = () => {
       setIndex(null);
-    }, 2000); 
 
-    
-    setTimeouts((prevTimeouts) => ({
-      ...prevTimeouts,
-      [index]: timeoutId,
-    }));
+  
   };
 
 
@@ -114,7 +106,7 @@ const RegisterVerification = () => {
               id={`otp-input-${index}`}
               type="text"
               onFocus={() => handleFocus(index)} 
-          onBlur={() => handleBlur(index)}
+          onBlur={() => handleBlur()}
               maxLength="1"
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={indexOtp === index + 1 ? digit : `●`}

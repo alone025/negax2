@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterVerificationLogin = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const navigate = useNavigate();
-  const [timeouts, setTimeouts] = useState({});
+  
   const [indexOtp , setIndex] = useState(0);
 
   const initialTime = 5*60;
@@ -82,22 +82,12 @@ const RegisterVerificationLogin = () => {
   const handleFocus = (index) => {
     setIndex(index+1);
 
-   
-    if (timeouts[index]) {
-      clearTimeout(timeouts[index]);
-    }
   };
 
-  const handleBlur = (index) => {
-    const timeoutId = setTimeout(() => {
-      setIndex(null);
-    }, 2000); 
-
+  const handleBlur = () => {
     
-    setTimeouts((prevTimeouts) => ({
-      ...prevTimeouts,
-      [index]: timeoutId,
-    }));
+      setIndex(null);
+  
   };
 
 
@@ -126,7 +116,7 @@ const RegisterVerificationLogin = () => {
               maxLength="1"
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
               onFocus={() => handleFocus(index)} 
-          onBlur={() => handleBlur(index)}
+          onBlur={() => handleBlur()}
               value={indexOtp === index + 1 ? digit : `●`}
               onChange={(e) => handleChange(e.target.value.replace(/[^0-9]/g, ""), index)}
             />
