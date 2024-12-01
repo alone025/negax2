@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const EditProfile = ({ user, onSave, onCancel }) => {
   const [editedUser, setEditedUser] = useState(user);
-  const [errors, setErrors] = useState(false);
+  const [errors, setErrors] = useState('');
 
 
   const handleInputChange = (field, value) => {
@@ -19,8 +19,13 @@ const EditProfile = ({ user, onSave, onCancel }) => {
   const handleSave = () => {
     
    if(editedUser.age < 18){
-    setErrors(true)
-   }else{
+    setErrors('Вам должно быть больше 18 лет.')
+   }else if (editedUser.weight > 200 || 40 > editedUser.weight  ){
+    setErrors('Введите правильный вес.')
+  }else if (editedUser.height > 200 || 70 > editedUser.height  ){
+    setErrors('Введите свой рост правильно.')
+  }
+  else{
     onSave(editedUser);
    } // Pass updated data back to the parent component
   };
@@ -82,22 +87,22 @@ const EditProfile = ({ user, onSave, onCancel }) => {
           <div>
             <label className="block text-gray-700">Рост (см)</label>
             <input
-              type="number"
+              type="text"
               value={editedUser.height}
               max={200}
               min={110}
-              onChange={(e) => handleInputChange("height", Number(e.target.value.length > 3 ? editedUser.height :  e.target.value))}
+              onChange={(e) => handleInputChange("height", Number(e.target.value.length > 3 ? editedUser.height :  e.target.value.replace(/[^0-9]/g, "")))}
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
           <div>
             <label className="block text-gray-700">Вес (кг)</label>
             <input
-              type="number"
+              type="text"
               value={editedUser.weight}
               max={200}
               min={50}
-              onChange={(e) => handleInputChange("weight", Number(e.target.value.length > 3 ? editedUser.weight :  e.target.value))}
+              onChange={(e) => handleInputChange("weight", Number(e.target.value.length > 3 ? editedUser.weight :  e.target.value.replace(/[^0-9]/g, "")))}
               className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
@@ -191,7 +196,7 @@ const EditProfile = ({ user, onSave, onCancel }) => {
         </div>
 
         {
-     errors &&   <p className="text-center font-mulish text-red-600 text-base mt-1">Вам должно быть больше 18 лет.</p>
+     errors &&   <p className="text-center font-mulish text-red-600 text-base mt-1">{errors}</p>
               
             }
 
