@@ -5,6 +5,7 @@ import EditProfile from "../components/EditProfile";
 import logo from "../img/logo.png";
 import setting from "../img/setting.png";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Profiless = () => {
 
@@ -68,7 +69,7 @@ const Profiless = () => {
   }
 
   return (
-    <div className="flex flex-col pb-[50px] container pt-16 px-4 min-h-screen relative">
+    <div className="flex flex-col pb-[70px] container pt-16 px-4 min-h-screen relative">
       <header className="absolute left-0 container top-5 flex justify-between items-center w-full">
         <div className="flex items-center gap-3">
           <img className="w-[40px]" src={logo} alt="Logo" />
@@ -198,6 +199,7 @@ const Profiless = () => {
             Удалить учетную запись
           </button>
       </div>
+      <Footer/>
     </div>
   );
 };
