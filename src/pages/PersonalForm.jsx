@@ -156,7 +156,7 @@ const PersonalForm = () => {
             О вас
           </h3>
           <div className="space-y-3">
-            <input min={'2006-01-01'} maxLength={5} type="date" onChange={(e)=> handleChange('year', e.target.value)} value={year} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"/>
+            <input max={'2006-12-31'} maxLength={5} type="date" onChange={(e)=> handleChange('year', e.target.value)} value={year} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500"/>
               {/* <option value="">Возраст</option>
               <option value="18-25">18-25</option>
               <option value="26-35">26-35</option>
@@ -209,7 +209,11 @@ const PersonalForm = () => {
             <select onChange={(e)=> handleChange('child', e.target.value)} value={child} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Количество детей</option>
               <option value="0">Нет</option>
-              <option value="1-2">1-2</option>
+              {Array.from({ length: 10 }, (_, i) => (
+      <option key={i} value={i+1}>
+        {i+1}
+      </option>
+    ))}
             </select>
             <select onChange={(e)=> handleChange('mazxab', e.target.value)} value={mazxab} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Ваш Мазхаб</option>
