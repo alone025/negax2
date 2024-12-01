@@ -17,7 +17,17 @@ const RegisterVerificationLogin = () => {
     e.preventDefault()
     
     if(otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== ''){
-    navigate("/")
+      const dataL = JSON.parse(localStorage.getItem("logined"));
+      if (!dataL) {
+        
+          
+            localStorage.setItem("logined", "true");
+        navigate("/")
+      
+      }else{
+        
+         navigate('/')
+      }
     }
   }
 
@@ -28,15 +38,17 @@ const RegisterVerificationLogin = () => {
     setOtp(newOtp);
 
     if (value && index < 3) {
-      document.getElementById(`otp-input-${index + 1}`).focus();
+   setTimeout(() => {
+    document.getElementById(`otp-input-${index + 1}`).focus();
+      }, 180); 
     }
   };
 
   const handleResend = () => {
     setTimeLeft(300)
   };
-
-  
+ 
+ 
 
   
   const formatTime = (time) => {
