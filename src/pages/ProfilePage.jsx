@@ -6,6 +6,7 @@ import vector from "../img/vector.svg";
 import xxx from "../img/xIcon.svg";
 import group1 from "../img/share.svg";
 import { useState } from "react";
+import ml from "../img/female-avatar.png"
 
 const ProfilePage = () => {
   const user = {
@@ -62,7 +63,8 @@ const ProfilePage = () => {
     </header> */}
 
       <header>
-        <div className="bg-div flex flex-col items-center relative min-h-[355px] w-full bg-[#ACACAC]">
+        <div className="bg-div flex flex-col items-center relative min-h-[355px] w-full bg-rgb">
+          <img src={ml} alt="" className="absolute top-0 h-full" />
           <div className="tope pt-10 flex flex-row items-start justify-between container">
             <img
               onClick={() => window.open("/personals", "_current")}
