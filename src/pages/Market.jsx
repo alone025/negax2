@@ -106,7 +106,7 @@ const [buy, setBuy] = useState(false);
 
       {
         active == '0' || active == '2' ? <>
-         <div className="img mt-6">
+         <div onClick={()=> window.open("/market/asd", "_current")} className="img mt-6">
         <img src={tasbex} alt="" />
       </div>
       <div className="texts min-w-[380px] mt-4">

@@ -117,7 +117,7 @@ const Blog = () => {
 const CardOtziv = ({ img, text }) => {
     return (
         <div className="carde mb-6 lg:mb-8">
-            <div className="img">
+            <div onClick={() => window.open("/blog/asd", "_current")} className="img">
                 <img src={img} alt="" />
             </div>
             <div className="txt border-b border-l border-r border-solid border-[#00000020] rounded-b px-5 pt-3 pb-2">

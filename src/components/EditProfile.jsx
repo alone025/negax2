@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const EditProfile = ({ user, onSave, onCancel }) => {
   const [editedUser, setEditedUser] = useState(user);
+  const [errors, setErrors] = useState(false);
+
 
   const handleInputChange = (field, value) => {
     setEditedUser({ ...editedUser, [field]: value });
@@ -15,7 +17,12 @@ const EditProfile = ({ user, onSave, onCancel }) => {
   };
 
   const handleSave = () => {
-    onSave(editedUser); // Pass updated data back to the parent component
+    
+   if(editedUser.age < 18){
+    setErrors(true)
+   }else{
+    onSave(editedUser);
+   } // Pass updated data back to the parent component
   };
 
   return (
@@ -44,7 +51,7 @@ const EditProfile = ({ user, onSave, onCancel }) => {
           <label className="block text-gray-700">Возраст</label>
           <input
             type="text"
-            value={editedUser.age}
+            value={editedUser.age === 0 ? '' : editedUser.age}
             max={50}
             min={18}
             onChange={(e) => handleInputChange("age", Number(e.target.value.length > 2 ? editedUser.age :  e.target.value.replace(/[^0-9]/g, "")))}
@@ -126,29 +133,19 @@ const EditProfile = ({ user, onSave, onCancel }) => {
         {/* Number of Children */}
         <div>
           <label className="block text-gray-700">Количество детей</label>
-          <input
-            type="text"
-            min={0}
-            max={10}
+         
+            <select
             value={editedUser.childrenCount}
-            // onChange={(e) =>
-            //   handleInputChange("childrenCount", Number(e.target.value.length > 2 ? editedUser.childrenCount : e.target.value.replace(/[^0-9]/g, "")))
-            // }
+            onChange={(e) => handleInputChange("childrenCount", e.target.value)}
+            className="w-full cursor-pointer p-2 border border-gray-300 rounded"
+          >
+               {Array.from({ length: 11 }, (_, i) => (
+      <option key={i} value={i}>
+        {i}
+      </option>
+    ))}
 
-            onChange={(e) => {
-              let newValue = e.target.value.replace(/[^0-9]/g, "");
-        
-              if (newValue.length > 2) {
-                newValue = newValue.slice(-2); 
-              }
-              if (Number(newValue) > 10) {
-                newValue = newValue.slice(1); 
-              }
-        
-              handleInputChange("childrenCount", newValue); 
-            }}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
+          </select>
         </div>
 
         {/* Character */}
@@ -193,6 +190,11 @@ const EditProfile = ({ user, onSave, onCancel }) => {
           </div>
         </div>
 
+        {
+     errors &&   <p className="text-center font-mulish text-red-600 text-base mt-1">Вам должно быть больше 18 лет.</p>
+              
+            }
+
         {/* Buttons */}
         <div className="mt-4 flex justify-between">
           <button
@@ -209,6 +211,7 @@ const EditProfile = ({ user, onSave, onCancel }) => {
             Отмена
           </button>
         </div>
+          
       </form>
     </div>
   );
