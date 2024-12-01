@@ -73,20 +73,18 @@ const RegisterVerification = () => {
   const handleFocus = (index) => {
     setIndex(index+1);
 
-    // Clear any existing timeout for this input
+   
     if (timeouts[index]) {
       clearTimeout(timeouts[index]);
     }
   };
 
-  // Handle input blur (when the input loses focus)
   const handleBlur = (index) => {
-    // Set a timeout to hide the input value after 3 seconds
     const timeoutId = setTimeout(() => {
-      setIndex(null); // Hide value after 3 seconds
-    }, 3000); // 3 seconds delay
+      setIndex(null);
+    }, 2000); 
 
-    // Store the timeout ID to clear it if focus comes back before 3 seconds
+    
     setTimeouts((prevTimeouts) => ({
       ...prevTimeouts,
       [index]: timeoutId,
@@ -121,7 +119,7 @@ const RegisterVerification = () => {
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={indexOtp === index + 1 ? digit : `●`}
               onChange={(e) => handleChange(e.target.value.replace(/[^0-9]/g, ""), index)}
-            />
+            /> 
           ))}
         </div>
         <p className="text-center font-mulish font-normal mt-8 text-sm text-[#5E5E5E] mb-4">

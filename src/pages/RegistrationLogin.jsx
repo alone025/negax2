@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 const RegisterVerificationLogin = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+  const [timeouts, setTimeouts] = useState({});
+  const [indexOtp , setIndex] = useState(0);
 
   const initialTime = 5*60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -13,7 +15,7 @@ const RegisterVerificationLogin = () => {
 
   function handleSurveyForm(e){
     e.preventDefault()
-   
+    
     if(otp[0] !== '' && otp[1] !=='' && otp[2] !=='' && otp[3] !== ''){
     navigate("/")
     }
@@ -63,6 +65,31 @@ const RegisterVerificationLogin = () => {
   }, [timeLeft]);
 
 
+
+
+  const handleFocus = (index) => {
+    setIndex(index+1);
+
+   
+    if (timeouts[index]) {
+      clearTimeout(timeouts[index]);
+    }
+  };
+
+  const handleBlur = (index) => {
+    const timeoutId = setTimeout(() => {
+      setIndex(null);
+    }, 2000); 
+
+    
+    setTimeouts((prevTimeouts) => ({
+      ...prevTimeouts,
+      [index]: timeoutId,
+    }));
+  };
+
+
+
   return (
     <div className="flex flex-col items-center pt-16 px-4 min-h-screen   relative">
     <header className="absolute container top-5 flex justify-between items-center w-full">
@@ -86,7 +113,9 @@ const RegisterVerificationLogin = () => {
               type="text"
               maxLength="1"
               className="w-12 h-12 text-center border border-gray-300 rounded-md text-lg font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
-              value={digit}
+              onFocus={() => handleFocus(index)} 
+          onBlur={() => handleBlur(index)}
+              value={indexOtp === index + 1 ? digit : `●`}
               onChange={(e) => handleChange(e.target.value.replace(/[^0-9]/g, ""), index)}
             />
           ))}
