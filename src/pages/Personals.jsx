@@ -278,7 +278,7 @@ const Personals = () => {
             className="bg-rgb flex flex-col justify-between text-white p-4 rounded-xl shadow-lg"
           >
            
-           <div>
+           <div onClick={()=> window.open("/personals/test", "_current")} className="cursor-pointer">
            <h2 className="text-sm sm:text-base font-mulish font-semibold text-start">
               {profile.name}, {profile.age} лет
             </h2>
@@ -288,7 +288,8 @@ const Personals = () => {
             <img
               src={profile.avatar}
               alt={profile.name}
-              className="mx-auto h-[100px] sm:h-[130px] md:h-[200px] lg:h-[200px] xl:h-auto my-3"
+              onClick={()=> window.open("/personals/test", "_current")}
+              className="mx-auto h-[100px] cursor-pointer sm:h-[130px] md:h-[200px] lg:h-[200px] xl:h-auto my-3"
             />
             <button onClick={()=> window.open("/personals/test", "_current")} className="mt-4 outline-none w-full text-[8px] sm:text-xs md:text-sm lg:text-base bg-[#8E76D7] text-white font-mulish font-bold py-2 rounded transition">
               Подробнее
