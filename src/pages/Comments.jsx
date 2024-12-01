@@ -109,7 +109,7 @@ const CardOtziv = ({ img, text }) => {
     return (
         <div className="carde mb-6 lg:mb-8">
             <div className="img">
-                <img src={img} alt="" />
+                <img onClick={() => window.open("/comments/as", "_current")} src={img} alt="" />
             </div>
             <div className="txt border-b border-l border-r border-solid border-[#00000020] rounded-b px-5 pt-3 pb-2">
                 <p className="text-lg font-monsetrat">{text}</p>
