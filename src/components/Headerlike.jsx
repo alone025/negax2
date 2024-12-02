@@ -4,7 +4,7 @@ import { HiChevronLeft } from 'react-icons/hi'
 
 function Headerlike({searchTerm, handleSearchChange}) {
   return (
-    <div className="flex flex-col gap-8 pt-8 pb-4 px-2 fixed bg-white top-0 left-0 right-0 z-10">
+    <div className="flex flex-col gap-8 pt-8 pb-4 px-2 absolute bg-white top-15 left-0 right-0 z-10">
         <div className="flex relative justify-center items-center text-[#ACACAC]">
           <p className="font-medium text-base font-mulish leading-5 ">Вас лайкнули</p>
           <div onClick={()=> window.open("/", "_current")} className="absolute left-0 text-2xl cursor-pointer"><HiChevronLeft/></div>

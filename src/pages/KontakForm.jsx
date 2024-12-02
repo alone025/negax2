@@ -132,6 +132,8 @@ const [about, setAbout] = useState("");
 
         {/* Buttons */}
         <div className="flex justify-between flex-col gap-3">
+        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
+
         <button onClick={handleFotoPagePrev} className="w-full text-base font-normal font-mulish py-3 text-purple-700 border-2 border-purple-700 rounded-full text-center">
             Назад
           </button>
@@ -142,7 +144,6 @@ const [about, setAbout] = useState("");
             Далее
           </button>
         </div>
-        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
 
       </div>
     </div>

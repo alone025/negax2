@@ -241,6 +241,7 @@ const PersonalForm = () => {
 
         {/* Buttons */}
         <div className="flex justify-between flex-col gap-3">
+        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
           <button
             onClick={handlePersonalFormPrev}
             className="w-full text-base font-normal font-mulish py-3 text-purple-700 border-2 border-purple-700 rounded-full text-center"
@@ -253,7 +254,6 @@ const PersonalForm = () => {
           >
             Далее
           </button>
-        {error !== "" && <p className="text-center font-mulish text-red-600 text-base mt-1">{error}</p>}
         </div>
       </div>
     </div>
