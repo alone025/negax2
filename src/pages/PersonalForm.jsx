@@ -88,14 +88,14 @@ const PersonalForm = () => {
 
     if (!year) setError("Требуется возраст!");
     else if (newAge < 18 || newAge >= 50) setError('Вам нет 18 лет!');
-    else if (!height) setError("Требуется рост!");
-    else if (!weight) setError("Требуется вес!");
-    else if (!character) setError("Характер обязателен!");
-    else if (!family) setError("Требуется семья!");
-    else if (!child) setError("Требуется ребенок!");
+    else if (!height) setError("Укажите свой рост!");
+    else if (!weight) setError("Укажите свой вес!");
+    else if (!character) setError("Укажите свой характер!");
+    else if (!family) setError("Укажите ваше семейное положение!");
+    else if (!child) setError("Укажите количество детей!");
     else if (!mazxab) setError("Требуется Мазхаб!");
-    else if (!talkChild) setError("Требуется отношение к детям!");
-    else if (!migration) setError("Требуется миграция!");
+    else if (!talkChild) setError("Укажите отношение к детям!");
+    else if (!migration) setError("Укажите готовы ли вы к переезду или нет!");
     else if (!vid) setError("Требуется вид деятельности!");
   else navigate("/religiyaform");
   }
