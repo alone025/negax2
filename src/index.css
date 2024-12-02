@@ -111,16 +111,10 @@ input#slider-checkInput:checked + .slider:before {
 
 
 
-@media screen and (max-width:768px) and (max-height:990px){
+@media screen and (max-width:768px){
   .h-cls{
     height: calc(100vh - 303px) !important;
     max-width: 300px;
   }
 }
 
-@media screen and (min-height:620px){
-  .h-cls{
-    height: auto;
-    padding-bottom: 12px;
-  }
-}
