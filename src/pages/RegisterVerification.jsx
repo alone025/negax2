@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import logo from "../img/logo2.png"
 import { HiChevronLeft } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const RegisterVerification = () => {
+
+
+  const location = useLocation();
+
+ 
+  const searchParams = new URLSearchParams(location.search);
+  const phoneNumber = searchParams.get('number'); 
+
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [indexOtp , setIndex] = useState(0);
   const navigate = useNavigate();
@@ -97,7 +105,7 @@ const RegisterVerification = () => {
             <span className="mr-2 text-[#ACACAC]"><HiChevronLeft/></span>
           </button>
         <p className="text-center font-mulish text-sm md:text-base text-[#5E5E5E] mb-4">
-          Пожалуйста, введите 4-значный код отправлено на +62812 0101 0101
+          Пожалуйста, введите 4-значный код отправлено на +{+phoneNumber}
         </p>
         <div className="flex mt-10 md:mt-16 justify-center gap-3 mb-4">
           {otp.map((digit, index) => (

@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import location from "../img/location.svg";
 import vector from "../img/vector.svg";
 import xxx from "../img/xIcon.svg";
-import group1 from "../img/refresh2.svg";
+import group1 from "../img/share.svg";
 import dot from '../img/3dot.svg'
 import { useNavigate } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
@@ -151,6 +151,8 @@ const Home = () => {
   const [filterActive, setFilterActive] = useState(false)
   const [dote, setDote] = useState(false)
 
+  const [beforeUser, setBeforeUser] = useState(null);
+  const [beforeUser2, setBeforeUser2] = useState(null);
 
   // Filter useStates
 
@@ -198,10 +200,12 @@ const Home = () => {
 
 
   const randomizeUser = () => {
+    setBeforeUser2(beforeUser)
   if(!filterActive){  
     if (data.length > 0) {
     const randomIndex = Math.floor(Math.random() * data.length);
     setCurrentUser(data[randomIndex]);
+    setBeforeUser(randomIndex)
   } else {
     setCurrentUser(null);
   }}else{
@@ -211,6 +215,7 @@ const Home = () => {
       
       const randomIndex = Math.floor(Math.random() * newD.length);
     setCurrentUser(newD[randomIndex]);
+    setBeforeUser(randomIndex)
     }
   }
   };
@@ -222,6 +227,16 @@ const Home = () => {
       randomizeUser()
     }
   };
+
+  
+  const prevUser = () => {
+    if (currentUser) {
+      
+        setCurrentUser(data[beforeUser2])
+      
+    }
+  };
+
 
 
   // Filter
@@ -423,7 +438,7 @@ const Home = () => {
 
       {/* User card under buttons */}
       <section className="container p-5 flex justify-between items-center">
-        <div onClick={randomizeUser} className="w-[50px] md:w-[60px] cursor-pointer h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">
+        <div onClick={prevUser} className="w-[50px] md:w-[60px] cursor-pointer h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">
           <img src={group1} alt="" />
         </div>
         <div onClick={unlikeUser} className="relative cursor-pointer w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-full shadow border flex items-center justify-center">

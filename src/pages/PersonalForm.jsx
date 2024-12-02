@@ -90,7 +90,7 @@ const PersonalForm = () => {
     else if (newAge < 18 || newAge >= 50) setError('Вам нет 18 лет!');
     else if (!height) setError("Требуется рост!");
     else if (!weight) setError("Требуется вес!");
-    else if (!character) setError("Требуется персонаж!");
+    else if (!character) setError("Характер обязателен!");
     else if (!family) setError("Требуется семья!");
     else if (!child) setError("Требуется ребенок!");
     else if (!mazxab) setError("Требуется Мазхаб!");
@@ -120,13 +120,13 @@ const PersonalForm = () => {
               Анкета
             </span>
             <span className="text-sm font-normal font-mulish text-[#634F9E]">
-              Анкета
+            Личность
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Религия
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Контакты
             </span>
           </div>
           <div className="flex items-center relative justify-between w-full gap-2">
@@ -164,28 +164,28 @@ const PersonalForm = () => {
 
             <select onChange={(e)=> handleChange('height', e.target.value)} value={height} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Рост</option>
-              <option value="90-100">90-100</option>
-              <option value="101-110">101-110</option>
-              <option value="111-120">111-120</option>
-              <option value="121-130">121-130</option>
+            
+              {Array.from({length:201},(_, dt)=>(
+           <>
+             {
+              dt < 70 ? null :  <option key={dt} value={dt}>{dt}</option>
+             }
+              </>
 
-              <option value="131-140">131-140</option>
-
-              <option value="141-150">141-150</option>
-
-              <option value="151-160">151-160</option>
-              <option value="161-170">161-170</option>
-              <option value="171-180">171-180</option>
-              <option value="181-190">181-190</option>
-              <option value="191-200">191-200</option>
+              ))}
 
             </select>
             <select onChange={(e)=> handleChange('weight', e.target.value)} value={weight} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Вес</option>
-              <option value="60-70">60-70</option>
-              <option value="70-80">70-80</option>
-              <option value="80-90">80-90</option>
-              <option value="90-100">90-100</option>
+             
+              {Array.from({length:131},(_, dt)=>(
+           <>
+             {
+              dt < 40 ? null :  <option key={dt} value={dt}>{dt}</option>
+             }
+              </>
+
+              ))}
             </select>
             <select onChange={(e)=> handleChange('character', e.target.value)} value={character} className="w-full font-mulish px-3 py-2 outline-none border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Ваш характер</option>
@@ -237,7 +237,7 @@ const PersonalForm = () => {
               className="w-full font-mulish px-3 py-2 outline-none  border rounded-lg focus:ring-2 focus:ring-purple-500"
             />
           </div>
-        </div>
+        </div> 
 
         {/* Buttons */}
         <div className="flex justify-between flex-col gap-3">

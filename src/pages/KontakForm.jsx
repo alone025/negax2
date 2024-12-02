@@ -27,10 +27,10 @@ const [about, setAbout] = useState("");
 
   function handleFotoPage(e){
     e.preventDefault()
-    if (!wa) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
-    else if (!ins) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
-    else if (!tg) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
-    else if (!fc) setError("Введите свой адрес в социальной сети или оставьте его недоступным.(нету)");
+    if (!wa) setError("Введите свой адрес в социальной сети или введите «Нет»");
+    else if (!ins) setError("Введите свой адрес в социальной сети или введите «Нет»");
+    else if (!tg) setError("Введите свой адрес в социальной сети или введите «Нет»");
+    else if (!fc) setError("Введите свой адрес в социальной сети или введите «Нет»");
     else if (!future) setError("Напишите о своей будущей супруге!");
     else if (future.length < 50) setError('Напишите не менее 50 слов о своем будущем супруге!');
     else if (!about) setError("Напишите о себе!");
@@ -55,13 +55,13 @@ const [about, setAbout] = useState("");
               Анкета
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Личность
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Религия
             </span>
             <span className="text-sm font-normal font-mulish text-[#634F9E]">
-              Анкета
+            Контакты
             </span>
           </div>
           <div className="flex items-center relative justify-between w-full gap-2">
@@ -121,11 +121,11 @@ const [about, setAbout] = useState("");
           <div className="space-y-3">
             <h1 className="block font-mulish font-normal text-base text-[#242430] mb-2">О будущей супруге:</h1>
             <textarea      onChange={(e)=>setFuture(e.target.value)}
-            value={future} placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
+            value={future} placeholder="О будущей супруге ..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
             
             <h1    className="block font-mulish font-normal text-base text-[#242430] mb-2" >О cебе:</h1>
             <textarea onChange={(e)=>setAbout(e.target.value)}
-            value={about} placeholder="Я здесь, когда тебе нужен солнечный день.Мы можем петь вместе на пляже и горетькостры ночью при лунном свете..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
+            value={about} placeholder="О cебе ..." className="w-full focus:ring-2 focus:ring-purple-500 h-[63px] px-3 py-2 font-mulish outline-none text-[10px] border rounded-lg text-[#5E5E5E]"/>
             
           </div>
         </div>

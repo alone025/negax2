@@ -7,6 +7,7 @@ import xxx from "../img/xIcon.svg";
 import group1 from "../img/share.svg";
 import { useState } from "react";
 import ml from "../img/female-avatar.png"
+import { initialData } from "../data/usersData";
 
 const ProfilePage = () => {
   const user = {
@@ -40,6 +41,12 @@ const ProfilePage = () => {
 
   const [doteModal, setDoteModal] = useState(false);
 
+  const [data, setData] = useState(initialData); 
+  const [currentUser, setCurrentUser] = useState(null);
+  const [beforeUser, setBeforeUser] = useState(null);
+  const [beforeUser2, setBeforeUser2] = useState(null);
+
+
 
   const toogleModal = () => {
     setDoteModal(!doteModal);
@@ -50,18 +57,53 @@ const ProfilePage = () => {
     setDote(!dote);
   };
 
+  // Functions prev delete other
+
+  const randomizeUser = () => {
+    // if(!filterActive){  
+    //   if (data.length > 0) {
+    //   const randomIndex = Math.floor(Math.random() * data.length);
+    //   setCurrentUser(data[randomIndex]);
+    // } else {
+    //   setCurrentUser(null);
+    // }}else{
+    //   const newD = applyFilters()
+    //     console.log(newD)
+    //   if (newD.length > 0 && data.length > 0) {
+        
+    //     const randomIndex = Math.floor(Math.random() * newD.length);
+    //   setCurrentUser(newD[randomIndex]);
+    //   }
+    // }
+    setBeforeUser2(beforeUser)
+    if (data.length > 0) {
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setCurrentUser(data[randomIndex]);
+        setBeforeUser(randomIndex)
+      } else {
+        setCurrentUser(null);
+      }
+    };
+  
+    const unlikeUser = () => {
+      if (currentUser) {
+        setData((prevData) => prevData.filter((user) => user.id !== currentUser.id));
+        
+        randomizeUser()
+      }
+    };
+
+    const prevUser = () => {
+      if (currentUser) {
+        
+          setCurrentUser(data[beforeUser2])
+        
+      }
+    };
+  
+
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* <header className="absolute container top-5 flex justify-between items-center w-full">
-          <div className="flex items-center gap-3">
-              <img className="w-[40px]  " src={logo} alt="" />
-              <h1 onClick={()=> window.open("/", "_current")} className="font-normal rgb-text cursor-pointer font-pro-monument text-[13px] md:text-2xl leading-4 ">NIKAH.SPACE</h1>
-          </div>
-          <div className="cursor-pointer" >
-            <img src={setting} alt="" />
-          </div>
-    </header> */}
-
       <header>
         <div className="bg-div flex flex-col items-center relative min-h-[355px] w-full bg-rgb">
           <img src={ml} alt="" className="absolute top-0 h-full" />
@@ -85,13 +127,13 @@ const ProfilePage = () => {
           </div>
 
           <section className="container absolute -bottom-3 flex justify-between items-center">
-            <div className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+            <div onClick={prevUser} className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
               <img src={group1} alt="" />
             </div>
-            <div className=" relative bg-white cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
+            <div onClick={unlikeUser} className=" relative bg-white cursor-pointer w-[65px] h-[65px] rounded-full shadow border flex items-center justify-center">
               <img src={xxx} alt="" />
             </div>
-            <div className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
+            <div onClick={randomizeUser} className="w-[65px] bg-white cursor-pointer h-[65px] rounded-full shadow border flex items-center justify-center">
               <img src={vector} alt="" />
             </div>
           </section>
@@ -123,16 +165,16 @@ const ProfilePage = () => {
       <div className="container">
         <div className="mt-12">
           <h1 className="text-2xl font-mulish font-medium text-[#131313]">
-            {user.name}, {user.age}
+            {!currentUser ? user.name: currentUser.name}, {!currentUser ? user.age: currentUser.age}
           </h1>
           <h2 className=" mt-6 text-lg font-mulish font-medium text-[#000000]">
             О себе
           </h2>
           <ul className="text-[#000000] opacity-40 space-y-2 text-base font-mulish font-medium mt-2">
-            <li>Ватсап: {user.contacts.whatsapp}</li>
-            <li>Инстаграм: {user.contacts.instagram}</li>
-            <li>Телеграм: {user.contacts.telegram}</li>
-            <li>Фейсбук: {user.contacts.facebook}</li>
+            <li>Ватсап: {!currentUser ? user.contacts.whatsapp : currentUser.contacts[0].whatsapp}</li>
+            <li>Инстаграм: {!currentUser ? user.contacts.instagram : currentUser.contacts[1].instagram}</li>
+            <li>Телеграм: {!currentUser ? user.contacts.telegram : currentUser.contacts[2].telegram}</li>
+            <li>Фейсбук: {!currentUser ? user.contacts.facebook : currentUser.contacts[3].facebook}</li>
           </ul>
 
           <div className="mt-4 flex flex-row gap-2 text-white text-sm font-mulish font-medium">

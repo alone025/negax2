@@ -3,6 +3,8 @@ import { parsePhoneNumberFromString, isValidNumber } from "libphonenumber-js";
 import logo from "../img/logo2.png";
 import { HiChevronLeft } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import Select from 'react-select';
+
 
 const RegisterState = () => {
   const [countryCode, setCountryCode] = useState("+62");
@@ -15,10 +17,10 @@ const RegisterState = () => {
   const navigate = useNavigate();
 
   const handleCountryCodeChange = (e) => {
-    const newCountryCode = e.target.value;
+    const newCountryCode = e;
     setCountryCode(newCountryCode);
 
-    const maxLengths = { "+62": 14, "+1": 14, "+91": 13 };
+    const maxLengths = { "+62": 14, "+1": 14, "+91": 13, "+998": 13, "+996" : 13, "+7":12, "+992":13 };
     setMaxLength(maxLengths[newCountryCode] || 14);
 
 
@@ -30,6 +32,10 @@ const RegisterState = () => {
       "+62": "ID",
       "+1": "US",
       "+91": "IN",
+      "+998": "UZ",
+      "+996": "KG",
+      "+7": "KZ",
+      "+992": "TJ",
     };
   
     const regionCode = countryMapping[countryCode];
@@ -60,7 +66,7 @@ const RegisterState = () => {
       setCheckboxError(true);
       setTimeout(() => setCheckboxError(false), 1000);
     } else {
-      navigate("/registerverification");
+      navigate(`/registerverification?number=${phoneNumber}`);
     }
   };
 
@@ -74,6 +80,16 @@ const RegisterState = () => {
       setPhoneNumber(input.slice(0, maxLength));
     }
   };
+
+  const options = [
+    { value: '+62', label: <div><span className="fi fi-id" alt="IDN" style={{ width: '20px', marginRight: '10px' }} />IDN (+62)</div> },
+    { value: '+1', label: <div><span className="fi fi-us" alt="USA" style={{ width: '20px', marginRight: '10px' }} />USA (+1)</div> },
+    { value: '+7', label: <div><span className="fi fi-kz" alt="IND" style={{ width: '20px', marginRight: '10px' }} />KAZ (+7)</div> },
+    { value: '+998', label: <div><span className="fi fi-uz" alt="UZB" style={{ width: '20px', marginRight: '10px' }} />UZB (+998)</div> },
+    { value: '+996', label: <div><span className="fi fi-kg" alt="KGZ" style={{ width: '20px', marginRight: '10px' }} />KGZ (+996)</div> },
+    { value: '+992', label: <div><span className="fi fi-tj" alt="TJK" style={{ width: '20px', marginRight: '10px' }} />TJK (+992)</div> },
+  ];
+  
 
   return (
     <div className="flex flex-col items-center pt-16 px-4 min-h-screen relative">
@@ -101,15 +117,15 @@ const RegisterState = () => {
             Страна
           </label>
           <div className="relative">
-            <select
-              className="w-full border font-mulish text-[#5E5E5E] border-solid border-[#ACACAC] rounded-md p-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none"
-              value={countryCode}
-              onChange={handleCountryCodeChange}
-            >
-              <option value="+62">IDN (+62)</option>
-              <option value="+1">USA (+1)</option>
-              <option value="+91">IND (+91)</option>
-            </select>
+       
+
+            <Select
+      options={options}
+      value={options.find(option => option.value === countryCode)}
+      onChange={(selectedOption) => handleCountryCodeChange(selectedOption.value)}
+      className="w-full font-mulish text-[#5E5E5E] rounded-md focus:ring-2 focus:ring-purple-500 focus:outline-none"
+    />
+
           </div>
         </div>
         <div className="mb-6">
@@ -123,7 +139,7 @@ const RegisterState = () => {
               placeholder={`${countryCode} 812 0101 0101`}
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              maxLength={countryCode === "+62" ? 11 : countryCode === "+1" ? 12 : countryCode === "+91" ? 13 : 11}
+              maxLength={countryCode === "+62" ? 11 : countryCode === "+1" ? 12 : countryCode === "+91" ? 13 : countryCode === "+998"? 13: countryCode === "+996" ? 13 : countryCode === "+7" ? 12 : countryCode === "+992" ? 13 : 12}
             />
             <span className="absolute right-3 top-2/4 transform -translate-y-2/4 text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 14 20" fill="none">

@@ -93,7 +93,7 @@ const SurveyForm = () => {
 
     if (!gender) setErrors("Пол обязателен!");
 else if (!name) setErrors("Имя обязательно!");
-else if (!surname) setErrors("Фамилия обязательна!");
+// else if (!surname) setErrors("Фамилия обязательна!");
 else if (!country) setErrors("Страна обязательна!");
 else if (!city) setErrors("Город обязателен!");
 else if (!national) setErrors("Гражданство обязательно!");
@@ -132,13 +132,13 @@ else{
               Анкета
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Личность
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Религия
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Контакты
             </span>
           </div>
           <div className="flex items-center relative justify-between w-full gap-2">
@@ -161,8 +161,13 @@ else{
         <h2 className="text-center text-xl font-mulish font-semibold mb-6">Анкета</h2>
 
         {/* Gender selection */}
-        <div className="flex justify-around mb-6">
-          <button
+      
+        <div className="flex flex-col justify-around mb-6">
+        <label className="block font-mulish font-normal text-base text-[#242430] mb-2">
+        Пол
+          </label>
+         <div className="flex justify-around">
+         <button
             onClick={() => handleGenderSelect("male")}
             className={`py-4 font-mulish font-medium flex flex-row items-center gap-2 p-5 border rounded-lg ${
               gender === "male"
@@ -236,6 +241,7 @@ else{
             )}
             Женский
           </button>
+         </div>
         </div>
 
         {/* Name inputs */}
@@ -291,11 +297,11 @@ else{
           <select onChange={(e)=> setNational(e.target.value)}
           value={national} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
             <option value="">Национальность</option>
-            <option value={"Kazax"}>Казах</option>
-                <option value={"Uzbek"}>Узбек</option>
-                <option value={"Tadjik"}>Тажик</option>
-                <option value={"Turkmen"}>Туркмен</option>
-                <option value={"Qirgiz"}>Киргиз</option>
+            <option value={"Kazax"}>{gender === "female" ? 'Казашка':'Казах'}</option>
+                <option value={"Uzbek"}>{gender === "female" ? 'Узбекча':'Узбек'}</option>
+                <option value={"Tadjik"}>{gender === "female" ? 'Тажика':'Тажик'}</option>
+                <option value={"Turkmen"}>{gender === "female" ? 'Туркменка':'Туркмен'}</option>
+                <option value={"Qirgiz"}>{gender === "female" ? 'Киргизка':'Киргиз'}</option>
           </select>
         </div>
 

@@ -44,13 +44,13 @@ function handleKontakForm(e){
               Анкета
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Личность
             </span>
             <span className="text-sm font-normal font-mulish  text-[#634F9E]">
-              Анкета
+            Религия
             </span>
             <span className="text-sm font-normal font-mulish text-[#BBC8E8]">
-              Анкета
+            Контакты
             </span>
           </div>
           <div className="flex items-center relative justify-between w-full gap-2">
@@ -79,18 +79,18 @@ function handleKontakForm(e){
           <div className="space-y-3">
             <select onChange={(e)=> setNamoz(e.target.value)} value={namoz} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Читаете ли вы намаз?</option>
-              <option value="single">Да</option>
-              <option value="married">Нет</option>
+              <option value="yes">Да</option>
+              <option value="no">Нет</option>
             </select>
             <select onChange={(e)=> setQuron(e.target.value)} value={quron} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Умеете ли вы читать К&rsquo;уран?</option>
-              <option value="0">Да</option>
-              <option value="1-2">Нет</option>
+              <option value="yes">Да</option>
+              <option value="no">Нет</option>
             </select>
             <select onChange={(e)=> setHijob(e.target.value)} value={hijob} className="w-full font-mulish outline-none px-3 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
               <option value="">Носите ли вы бороду?</option>
-              <option value="hanafi">Ханафи</option>
-              <option value="shafi">Шафи</option>
+              <option value="yes">Да</option>
+              <option value="no">Нет</option>
             </select>
           </div>
         </div>
