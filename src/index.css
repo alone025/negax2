@@ -114,7 +114,7 @@ input#slider-checkInput:checked + .slider:before {
 @media screen and (max-width:768px){
   .h-cls{
     height: calc(100vh - 303px) !important;
-    max-width: 250px;
+    max-height: 300px;
   }
 }
 
