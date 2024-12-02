@@ -113,8 +113,19 @@ input#slider-checkInput:checked + .slider:before {
 
 @media screen and (max-width:768px){
   .h-cls{
-    height: calc(100vh - 303px) !important;
+    height: calc(100vh - 303px);
     max-height: 300px;
+  }
+}
+
+@media screen and (min-height: 620px){
+  .h-cls{
+    height: calc(100vh - 303px) !important;
+    max-height: unset;
+    
+  }
+  .h-cls .h-edit{
+    height: 73%;
   }
 }
 
