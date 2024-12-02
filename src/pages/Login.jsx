@@ -46,7 +46,9 @@ const Login = () => {
                 </button>
               </div>
         </main>
-              <div className="mx-auto container mt-[100px] flex justify-center gap-2 "> <span className="text-[#ACACAC] text-[12px] font-mulish font-normal leading-4">Нет аккаунта?</span><Link to="/register" className="text-[12px] font-medium font-mulish leading-4 text-[#634F9E]"> Зарегистрироваться</Link></div>
+              <div className="mx-auto container mt-[100px] flex justify-center gap-2 "> <span className="text-[#ACACAC] text-[12px] md:tex-sm font-mulish font-normal leading-4">Нет аккаунта?</span><Link to="/register" className="text-[12px] font-medium font-mulish leading-4 text-[#634F9E]"> Зарегистрироваться</Link></div>
+
+              <p className="text-xs md:text-sm mt-5 font-mulish font-light text-center">Для регистрации вам должно быть не менее 18 лет. Регистрируясь, вы соглашаетесь с Лицензионным соглашением NIKAH.SPACE, Политикой приватности и Правилами оплаты.</p>
                 
  
     </div>

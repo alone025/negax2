@@ -149,6 +149,9 @@ const RegisterVerificationLogin = () => {
         </button>
        
       </div>
+      <p className="text-xs text-center mb-2 mt-5 md:text-sm font-mulish text-[#6A59A7] font-normal">Условия использования 
+        <br />
+      Политика конфиденциальности</p>
     </div>
   );
 };
