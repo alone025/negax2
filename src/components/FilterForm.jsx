@@ -49,25 +49,25 @@ const citysBy = {
   ]
  }
 
-const citys = [
-  { city: 'Tashkent'}, { city: 'Samarkand'}, { city: 'Bukhara'}, { city: 'Khiva'}, { city: 'Andijan'},
- { city: 'Dushanbe'}, { city: 'Khujand'}, { city: 'Kulob'}, { city: 'Bokhtar'}, { city: 'Istaravshan'},
- { city: 'Bishkek'}, { city: 'Osh'}, { city: 'Jalal-Abad'}, { city: 'Karakol'}, { city: 'Naryn'},
- { city: 'Astana'}, { city: 'Almaty'}, { city: 'Shymkent'}, { city: 'Aktobe'}, { city: 'Karaganda'},
-  { city: 'Ashgabat'}, { city: 'Turkmenabat'}, { city: 'Mary'}, { city: 'Dashoguz'}, { city: 'Balkanabat'},
+ const citys = [
+  { city: 'Ташкент'}, { city: 'Самарканд'}, { city: 'Бухара'}, { city: 'Хива'}, { city: 'Андижан'},
+  { city: 'Душанбе'}, { city: 'Худжанд'}, { city: 'Куляб'}, { city: 'Бохтар'}, { city: 'Истаравшан'},
+  { city: 'Бишкек'}, { city: 'Ош'}, { city: 'Джалал-Абад'}, { city: 'Каракол'}, { city: 'Нарын'},
+  { city: 'Астана'}, { city: 'Алматы'}, { city: 'Шымкент'}, { city: 'Актобе'}, { city: 'Караганда'},
+  { city: 'Ашхабад'}, { city: 'Туркменабат'}, { city: 'Мары'}, { city: 'Дашогуз'}, { city: 'Балканабат'},
  
-    { city: 'Moscow'},
-    { city: 'Saint Petersburg'},
-    { city: 'Novosibirsk'},
-    { city: 'Yekaterinburg'},
-    { city: 'Kazan'},
-    { city: 'Nizhny Novgorod'},
-    { city: 'Chelyabinsk'},
-    { city: 'Samara'},
-    { city: 'Omsk'},
-    { city: 'Rostov-on-Don'}
-  
-]
+  { city: 'Москва'},
+  { city: 'Санкт-Петербург'},
+  { city: 'Новосибирск'},
+  { city: 'Екатеринбург'},
+  { city: 'Казань'},
+  { city: 'Нижний Новгород'},
+  { city: 'Челябинск'},
+  { city: 'Самара'},
+  { city: 'Омск'},
+  { city: 'Ростов-на-Дону'}
+ 
+ ]
 
 
 const FilterForm = ({

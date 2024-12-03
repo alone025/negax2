@@ -33,7 +33,7 @@ function LikesItem({ dataC, hnd }) {
         className="absolute cursor-pointer top-4 left-4 flex flex-col font-semibold text-[12px] leading-4"
       >
         <p className="font-mulish font-semibold">
-          {dataC.age % 2 === 0 ? "Сергей" : dataC.name }, {dataC.age} лет
+          {dataC.name }, {dataC.age} лет
         </p>
         <p className="font-mulish font-semibold">
           {dataC.country}, {dataC.city}
@@ -41,7 +41,7 @@ function LikesItem({ dataC, hnd }) {
         <p className="font-mulish font-semibold">№{dataC.idC}</p>
       </div>
  
-        <img onClick={() => window.open("/personals/ds", "_current")} src={dataC.age % 2 === 0 ? ml : fm} alt="ml" className="pt-16" />
+        <img onClick={() => window.open("/personals/ds", "_current")} src={dataC.gender == "male" ? ml : fm} alt="ml" className="pt-16" />
 
       <div
                         onClick={() => handleDeleteClick(dataC.id)}
